@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Retrieval.检索</title>
+    <link rel="stylesheet" href="./css/css1.css">
+</head>
+<body>
+<div id="bg">
+<header>
+</header>
+<nav>
+    <section>
+        <div id="v8">
+            <input id="retrieval_v8_main" type="image" src="./img/v8_icon/baidu.svg" use="baidu">
+            <ul id="retrieval_v8" class="hide">
+                <li datause="baidu" dataSvg="./img/v8_icon/baidu.svg"><img src="./img/v8_icon/baidu.svg">百度</li>
+                <li datause="google" dataSvg="./img/v8_icon/google.svg"><img src="./img/v8_icon/google.svg">谷歌</li>
+                <li datause="bing" dataSvg="./img/v8_icon/bing.svg"><img src="./img/v8_icon/bing.svg">必应</li>
+                <li datause="taobao" dataSvg="./img/v8_icon/taobao.svg"><img src="./img/v8_icon/taobao.svg">淘宝</li>
+            </ul>
+        </div>
+        <input type="text" placeholder="请开始你的表演" id="retrieval_value" value="">
+        <input type="button" id="retrieval_go">
+        <input type="button" id="retrieval_clean">
+
+        <div class="word">
+            <li class="word_item"></li>
+            <li class="word_item"></li>
+            <li class="word_item"></li>
+            <li class="word_item"></li>
+            <li class="word_item"></li>
+            <li class="word_item"></li>
+            <li class="word_item"></li>
+            <li class="word_item"></li>
+            <li class="word_item"></li>
+            <li class="word_item"></li>
+        </div>
+    </section>
+    <section id="shortcuts_card">
+        <button id="add_shortcuts">
+            <div class="a_img"></div>
+            <div class="a_span">添加快捷方式</div>
+        </button>
+    </section>
+</nav>
+<aside>
+    <div class="tools">
+        <button title="便签" id="bianqian"></button>
+    </div>
+    <div class="bianqian_window">
+        <textarea id="bianqian_text" class="show" placeholder="请输入便签内容"></textarea>
+    </div>
+    <div class="wallpaper">
+        <button class="control_up" title="上一张壁纸"></button>
+        <button class="control_down" title="下一张壁纸"></button>
+        <button class="wallpaper_get" title="下载当前壁纸"><a id="wallpaper_get_url" href="./img/background/1.jpg" download="background1.jpg"></a></button>
+        <button class="wallpaper_post" title="使用自定义壁纸"></button>
+        <input type="file"  accept="jpg" id="btn_file" style="display:none">
+        <button class="wallpaper_switch" title="关闭自定义壁纸"></button>
+    </div>
+    <button class="wallpaper_blur" title="壁纸模糊"></button>
+</aside>
+<footer>
+    <span>© 2019 Han09</span>
+    <a href="https://www.hanlinxuan.club">关于</a>
+    <a class="mailto" href="mailto:microsoftsony@aliyun.com">反馈 &nbsp; &nbsp; &nbsp; 联系我</a>
+</footer>
+<!----------模态窗口--------->
+<div id="Modal_Box" class="hide">
+    <div class="Dialogue">
+        <span class="Dialogue_title">网站标题</span>
+        <input class="Dialogue_input" id="shortcuts_title" type="text" placeholder="例如：github" value=''>
+        <div class="under_line">
+            <div class="line"></div>
+        </div>
+        <span class="Dialogue_title">网站链接</span>
+        <input class="Dialogue_input" id="shortcuts_url" type="url" placeholder="例如：https://www.github.com">
+        <div class="under_line">
+            <div class="line"></div>
+        </div>
+        <div class="Dialogue_button">
+            <button id="button_remove" disabled="disabled">移除</button>
+            <div class="button_right">
+                <button id="button_cancel">取消</button>
+                <button id="button_ok" disabled="disabled">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src='./js/js1.js'></script>
+<script src='./js/Sortable.min.js'></script>
+<script src='./js/Modal.js'></script>
+</body>

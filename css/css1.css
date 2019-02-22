@@ -1,0 +1,532 @@
+body {
+    margin: 0;
+}
+
+#bg {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.bg:after {
+    content: '';
+    height: 103vh;
+    width: 103vw;
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    background:inherit;
+    filter: blur(10px);
+    z-index: -10;
+}
+
+/*@font-face {*/
+/*font-family: google;*/
+/*src: url("../font/ProductSans-Regular.ttf");*/
+/*}*/
+header {
+    height: 70px;
+    margin-top: 20vh;
+    background: url("../img/logo.svg") no-repeat center;
+}
+
+nav {
+    width: 550px;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+    top: 30px;
+
+}
+
+#retrieval_v8_main {
+    width: 30px;
+    outline: none;
+}
+
+#retrieval_v8 {
+    margin: 3px 0 0 -7px;
+    padding: 0;
+    width: 75px;
+    color: #e9dfe8;
+    user-select: none;
+}
+
+#retrieval_v8 li {
+    padding: 3px;
+    margin: 0;
+    height: 30px;
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#retrieval_v8 li:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#retrieval_v8 li:first-child {
+    border-radius: 10px 10px 0 0;
+}
+
+#retrieval_v8 li:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+#retrieval_v8 li img {
+    display: inline;
+    width: 30px;
+    vertical-align: top;
+}
+
+#v8 {
+    position: absolute;
+    left: 2%;
+    top: calc(50% - 14px);
+    z-index: 100;
+    user-select: none;
+
+}
+
+#retrieval_value {
+    border: 2px solid #a89ea7;
+    border-radius: 25px;
+    height: 40px;
+    width: 500px;
+    padding-left: 40px;
+    transition: box-shadow 500ms;
+    display: block;
+    position: absolute;
+    top: calc(50% - 22px);
+    left: calc(50% - 272px);
+
+}
+
+#retrieval_value:focus {
+    box-shadow: 0 0 10px blue;
+    outline: none;
+}
+
+#retrieval_go {
+    display: inline;
+    width: 30px;
+    height: 30px;
+    background: url("../img/v8_icon/go.svg") no-repeat;
+    background-size: 100%;
+    border: none;
+    padding: 0;
+    position: absolute;
+    right: calc(6% - 17px);
+    top: calc(50% - 15px);
+    outline: none;
+}
+
+#retrieval_clean {
+    position: absolute;
+    border: none;
+    background: url("../img/v8_icon/shanchu.svg") no-repeat;
+    outline: none;
+    opacity: 0.5;
+    background-size: 100%;
+    width: 15px;
+    height: 15px;
+    right: 53px;
+    top: calc(50% - 7px);
+}
+
+#retrieval_clean:hover {
+    opacity: 0.8;
+}
+
+.word {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 2px solid #a89ea7;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    background: white;
+    width: 464px;
+    position: absolute;
+    left: calc(50% - 232px);
+    top: calc(50% + 22px);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px blue;
+    z-index: -1;
+}
+
+.word_item {
+    display: block;
+    margin: 0;
+    padding: 0 0 0 20px;
+    list-style: none;
+    line-height: 23px;
+    font-size: 15px;
+}
+
+.select {
+    background: rgba(180, 176, 184, 0.3);
+}
+
+.word_item:last-child {
+    border-radius: 0 0 7px 7px;
+}
+
+aside {
+    width: 70px;
+    height: 90vh;
+    position: absolute;
+    right: 20px;
+    top: 0;
+
+}
+
+.tools button {
+    background-color: rgba(220, 220, 220, 0.3);
+    border: none;
+    color: white;
+    display: block;
+    padding: 0;
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    outline: none;
+}
+
+.tools {
+    display: block;
+    width: 70px;
+    margin: 100px 0;
+}
+
+.wallpaper {
+    display: block;
+    width: 70px;
+    padding: 10px 0;
+    margin: 200px 0 30px 0;
+}
+
+.wallpaper button {
+    margin: 0 auto;
+    display: block;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border: none;
+    color: white;
+    outline: none;
+}
+
+.wallpaper button:hover {
+    opacity: 0.8;
+}
+
+.wallpaper button:first-child,
+.wallpaper button:last-child {
+    border-radius: 0 0 5px 5px;
+}
+
+.wallpaper_blur {
+    display: block;
+    border: none;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    margin: 15px;
+    outline: none;
+}
+
+footer {
+    position: absolute;
+    font-size: 12px;
+    left: 0;
+    bottom: 0;
+    height: 5vh;
+    line-height: 5vh;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    user-select: none;
+
+}
+
+footer span {
+    color: white;
+    margin: 0 20px 0 50px;
+}
+
+footer a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #326471;
+}
+
+.mailto {
+    position: absolute;
+    right: 100px;
+}
+
+footer:hover {
+    opacity: 0.8;
+}
+
+.tools button:first-child {
+    background: url("../svg/bq.svg") no-repeat center;
+    border-radius: 5px;
+    background-size: 100%;
+}
+
+.wallpaper > .control_up {
+    background: url("../svg/arrow.svg") no-repeat rgba(0, 0, 0, 0.7) center top;
+    background-size: 90%;
+    transform: rotate(180deg);
+}
+
+.wallpaper > .control_down {
+    background: url("../svg/arrow.svg") no-repeat rgba(0, 0, 0, 0.7) center;
+    background-size: 90%;
+}
+
+.wallpaper > .wallpaper_get {
+    background: url("../svg/download.svg") no-repeat rgba(0, 0, 0, 0.7) center;
+    background-size: 80%;
+}
+
+.wallpaper > .wallpaper_post {
+    background: url("../svg/add.svg") no-repeat rgba(0, 0, 0, 0.7) center;
+    background-size: 80%;
+}
+
+.wallpaper > .wallpaper_switch {
+    background: url("../svg/annex.svg") no-repeat rgba(0, 0, 0, 0.7) center;
+    background-size: 80%;
+}
+
+.wallpaper_blur {
+    background: url("../svg/mh.svg") no-repeat center;
+    background-size: 90%;
+}
+
+/*快捷方式部分*/
+a {
+    text-decoration: none;
+}
+
+#shortcuts_card {
+    position: absolute;
+    width: 550px;
+    height: 240px;
+    top: 100px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    z-index: -2;
+}
+
+#add_shortcuts,
+.shortcuts_item {
+    display: inline-block;
+    border: none;
+    background: none;
+    border-radius: 5px;
+    width: 105px;
+    height: 110px;
+    padding: 0;
+    vertical-align: top;
+    position: relative;
+    font-size: 14px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+#add_shortcuts {
+    order: 99;
+}
+
+#add_shortcuts:hover,
+.shortcuts_item:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.a_img {
+    background: rgba(255, 255, 255, 0.75);
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    margin: 0 auto;
+}
+
+.a_img_t {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+    position: relative;
+    top: 9px;
+
+}
+
+.a_span {
+    background: whitesmoke;
+    border-radius: 25px;
+    line-height: 25px;
+    width: 95px;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 15px auto 0;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+}
+
+.a_button {
+    margin: 0;
+    padding: 0;
+    width: 25px;
+    height: 15px;
+    background: url("../svg/menu.svg") no-repeat center;
+    background-size: 70%;
+    transform: rotate(90deg);
+    opacity: 0.5;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    display: none;
+}
+
+.a_button:hover {
+    opacity: 1;
+}
+
+#add_shortcuts > .a_img {
+    background: url("../svg/add2.svg") no-repeat center rgba(255, 255, 255, 0.75);
+    background-size: 40%;
+}
+
+/*模态窗口部分*/
+#Modal_Box {
+    background: rgba(224, 224, 224, 0.3);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2000;
+}
+
+.Dialogue {
+    background: white;
+    box-sizing: border-box;
+    width: 500px;
+    height: 300px;
+    border: 3px solid white;
+    border-radius: 5px;
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 250px);
+    padding: 10px;
+    box-shadow: 0 0 10px #444444;
+}
+
+.Dialogue_title {
+    display: block;
+    user-select: none;
+    margin: 15px;
+}
+
+.Dialogue_input {
+    display: block;
+    margin: 15px;
+    width: 430px;
+    height: 25px;
+    border: none;
+    border-radius: 3px;
+    background: rgba(214, 209, 218, 0.24);
+    outline: none;
+    padding-left: 10px;
+}
+
+.under_line {
+    width: 440px;
+    height: 2px;
+    margin: -15px 15px 15px 15px;
+    display: block;
+}
+
+.line {
+    background: blue;
+    margin: 0 auto;
+    display: block;
+    width: 0;
+    height: 2px;
+    transition: width 500ms;
+}
+
+.Dialogue_button {
+    position: relative;
+    top: 50px;
+}
+
+.button_right {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+}
+
+#button_remove,
+#button_cancel,
+#button_ok {
+    width: 65px;
+    height: 40px;
+    border: 1px solid #a89ea7;
+    border-radius: 5px;
+    outline: none;
+    background: transparent;
+    margin: 0 10px;
+}
+
+#button_cancel:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+/*功能区便签*/
+.bianqian_window {
+    position: absolute;
+    right: 65px;
+    top: 100px;
+    z-index: 101;
+}
+
+#bianqian_text {
+    width: 200px;
+    height: 250px;
+    background: rgba(252, 203, 79, 0.9);
+}
+
+/*变更样式区*/
+.button_CanUse {
+    background: transparent;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
