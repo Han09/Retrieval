@@ -35,7 +35,6 @@ for (let i = 0; i < svg.length; i++) {
     svg[i].onclick = function () {
         let data = this.attributes.dataSvg.value;//图片切换
         let use = this.attributes.datause.value;//链接切换
-        console.log(use);
         v8_main.setAttribute('src', data);
         v8_main.setAttribute('use', use);
         //存储浏览器选择
@@ -45,7 +44,6 @@ for (let i = 0; i < svg.length; i++) {
 }
 //默认搜索引擎
 var DE = localStorage.getItem('Default engine');
-console.log(DE);
 if (DE === 'null') {
     console.log('???');
     localStorage.setItem('Default engine', 'baidu');
@@ -74,7 +72,6 @@ retrieval_go.onclick = function () {
             break;
         case 'bing':
             window.open('https://cn.bing.com/search?q=' + retrieval_value);
-
             break;
     }
 };
@@ -200,6 +197,7 @@ function getword() {
             break;
     }
     document.head.appendChild(script);
+    document.head.removeChild(script);
 }
 //获取候选词  ajax
 // function getword() {
