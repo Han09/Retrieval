@@ -34,7 +34,6 @@ document.addEventListener('click', function () {
 for (let i = 0; i < svg.length; i++) {
     svg[i].onclick = function () {
         let data = this.attributes.dataSvg.value;//图片切换
-        console.log(data);
         let use = this.attributes.datause.value;//链接切换
         console.log(use);
         v8_main.setAttribute('src', data);
@@ -46,10 +45,16 @@ for (let i = 0; i < svg.length; i++) {
 }
 //默认搜索引擎
 var DE = localStorage.getItem('Default engine');
+console.log(DE);
 if (DE === 'null') {
+    console.log('???');
     localStorage.setItem('Default engine', 'baidu');
     v8_main.setAttribute('src', './img/v8_icon/baidu.svg');
     v8_main.setAttribute('use', 'baidu');
+}
+else {
+    v8_main.setAttribute('src', './img/v8_icon/'+DE+'.svg');
+    v8_main.setAttribute('use', DE);
 }
 
 
@@ -146,284 +151,335 @@ function clean_words() {
     }
 }
 
-//获取候选词
+//获取候选词 jsonp
+function defaultSug(data) {
+    let words = data.s;
+    let i = 0;
+    for (; i < words.length; i++) {
+        word_item[i].innerHTML = words[i];
+        word_item[i].classList.add('SN');
+    }
+}
+
+function forGoogle(data) {
+    let words = data[1];
+    let i = 0;
+    for (; i < words.length; i++) {
+        word_item[i].innerHTML = words[i][0];
+        word_item[i].classList.add('SN');
+    }
+}
+
+function cb(data) {
+    let words = data.result;
+    let i = 0;
+    for (; i < words.length; i++) {
+        word_item[i].innerHTML = words[i][0];
+        word_item[i].classList.add('SN');
+    }
+}
+
 function getword() {
     clean_words();
     let retrieval_value = document.getElementById('retrieval_value').value;
     let use = v8_main.attributes.use.value;
-    var ajax = new XMLHttpRequest();
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
     switch (use) {
         case 'baidu':
-            ajax.open('get', 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=defaultSug&wd=' + retrieval_value);
-            ajax.send();
-            ajax.onreadystatechange = function () {
-                if (ajax.readyState == 4 && ajax.status == 200) {
-                    eval(ajax.responseText);
-
-                    function defaultSug(arr) {
-                        let words = arr.s;
-                        let i = 0;
-                        for (; i < words.length; i++) {
-                            word_item[i].innerHTML = words[i];
-                            word_item[i].classList.add('SN');
-                        }
-                    }
-                }
-            }
+            script.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=defaultSug&wd=' + retrieval_value;
+            break;
+        case 'bing':
+            script.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=defaultSug&wd=' + retrieval_value;
+            break;
+        case 'google':
+            script.src = 'http://suggestqueries.google.com/complete/search?client=psy-ab&hl=zh-CN&jsonp=forGoogle&q=' + retrieval_value;
             break;
         case 'taobao':
-            ajax.open('get', 'https://suggest.taobao.com/sug?code=utf-8&q=' + retrieval_value);
-            ajax.send();
-            ajax.onreadystatechange = function () {
-                if (ajax.readyState == 4 && ajax.status == 200) {
-                    let words = eval("(" + ajax.responseText + ")").result;
-                    let i = 0;
-                    for (; i < words.length; i++) {
-                        word_item[i].innerHTML = words[i][0];
-                        word_item[i].classList.add('SN');
-                    }
-                }
-            }
-            break
-        case 'google':
-            ajax.open('get', 'http://suggestqueries.google.com/complete/search?client=psy-ab&hl=zh-CN&jsonp=forGoogle&q=' + retrieval_value);
-            ajax.send();
-            ajax.onreadystatechange = function () {
-                if (ajax.readyState == 4 && ajax.status == 200) {
-                    var c = eval(ajax.responseText);
-
-                    function forGoogle(arr) {
-                        let words = arr[1];
-                        let i = 0;
-                        for (; i < words.length; i++) {
-                            word_item[i].innerHTML = words[i][0];
-                            word_item[i].classList.add('SN');
-                        }
-                    }
-                }
-            }
-            break
-        case 'bing':
-            ajax.open('get', 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=defaultSug&wd=' + retrieval_value);
-            ajax.send();
-            ajax.onreadystatechange = function () {
-                if (ajax.readyState == 4 && ajax.status == 200) {
-                    eval(ajax.responseText);
-
-                    function defaultSug(arr) {
-                        let words = arr.s;
-                        let i = 0;
-                        for (; i < words.length; i++) {
-                            word_item[i].innerHTML = words[i];
-                            word_item[i].classList.add('SN');
-                        }
-                    }
-                }
-            }
+            script.src = 'http://suggest.taobao.com/sug?code=utf-8&q=' + retrieval_value + '&callback=cb ';
             break;
     }
+    document.head.appendChild(script);
 }
+//获取候选词  ajax
+// function getword() {
+//     clean_words();
+// //     let retrieval_value = document.getElementById('retrieval_value').value;
+// //     let use = v8_main.attributes.use.value;
+//     var ajax = new XMLHttpRequest();
+//     switch (use) {
+//         case 'baidu':
+//             ajax.open('get', 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=defaultSug&wd=' + retrieval_value);
+//             ajax.send();
+//             ajax.onreadystatechange = function () {
+//                 if (ajax.readyState == 4 && ajax.status == 200) {
+//                     console.log(ajax.responseText);
+//                     eval(ajax.responseText);
+//
+//                     function defaultSug(arr) {
+//                         let words = arr.s;
+//                         let i = 0;
+//                         for (; i < words.length; i++) {
+//                             word_item[i].innerHTML = words[i];
+//                             word_item[i].classList.add('SN');
+//                         }
+//                     }
+//                 }
+//             }
+//             break;
+//         case 'taobao':
+//             ajax.open('get', 'https://suggest.taobao.com/sug?code=utf-8&q=' + retrieval_value);
+//             ajax.send();
+//             ajax.onreadystatechange = function () {
+//                 if (ajax.readyState == 4 && ajax.status == 200) {
+//                     let words = eval("(" + ajax.responseText + ")").result;
+//                     let i = 0;
+//                     for (; i < words.length; i++) {
+//                         word_item[i].innerHTML = words[i][0];
+//                         word_item[i].classList.add('SN');
+//                     }
+//                 }
+//             }
+//             break
+//         case 'google':
+//             ajax.open('get', 'http://suggestqueries.google.com/complete/search?client=psy-ab&hl=zh-CN&jsonp=forGoogle&q=' + retrieval_value);
+//             ajax.send();
+//             ajax.onreadystatechange = function () {
+//                 if (ajax.readyState == 4 && ajax.status == 200) {
+//                     var c = eval(ajax.responseText);
+//
+//                     function forGoogle(arr) {
+//                         let words = arr[1];
+//                         let i = 0;
+//                         for (; i < words.length; i++) {
+//                             word_item[i].innerHTML = words[i][0];
+//                             word_item[i].classList.add('SN');
+//                         }
+//                     }
+//                 }
+//             }
+//             break
+//         case 'bing':
+//             ajax.open('get', 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=defaultSug&wd=' + retrieval_value);
+//             ajax.send();
+//             ajax.onreadystatechange = function () {
+//                 if (ajax.readyState == 4 && ajax.status == 200) {
+//                     eval(ajax.responseText);
+//
+//                     function defaultSug(arr) {
+//                         let words = arr.s;
+//                         let i = 0;
+//                         for (; i < words.length; i++) {
+//                             word_item[i].innerHTML = words[i];
+//                             word_item[i].classList.add('SN');
+//                         }
+//                     }
+//                 }
+//             }
+//             break;
+//     }
+// }
 
 
 //状态存储
-var OOF = localStorage.getItem('openoroff');
-if (OOF === null) { //第一次使用时添加默认设置
-    var oof = new Array();
-    oof[0] = 'open';//便签的开关状态 默认为开
-    oof[1] = 'off'; //壁纸模糊的开关状态 默认为关
-    oof[2] = '1'; //当前壁纸序号 默认为1；
-    oof[3] = 'off';//自定义壁纸开关状态，默认为关
-    localStorage.setItem('openoroff', oof);
-}
-var tools_oof = localStorage.getItem('openoroff').split(',');
+    var OOF = localStorage.getItem('openoroff');
+    if (OOF === null) { //第一次使用时添加默认设置
+        var oof = new Array();
+        oof[0] = 'open';//便签的开关状态 默认为开
+        oof[1] = 'off'; //壁纸模糊的开关状态 默认为关
+        oof[2] = '1'; //当前壁纸序号 默认为1；
+        oof[3] = 'off';//自定义壁纸开关状态，默认为关
+        localStorage.setItem('openoroff', oof);
+    }
+    var tools_oof = localStorage.getItem('openoroff').split(',');
 
 //便签
-bianqian_text.value = localStorage.getItem('text')
-if (tools_oof[0] === 'open') { //页面加载时判定上次关闭页面时便签窗口的显示状态
-    bianqian_text.className = 'show';
-    bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
-}
-else {
-    bianqian_text.className = 'hide';
-}
-bianqian.onclick = function () { //便签的显示和关闭
-    if (bianqian_text.className === 'show') {
-        bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0)'
-        bianqian_text.className = 'hide';
-        tools_oof[0] = 'off';
-        localStorage.setItem('openoroff', tools_oof);
+    bianqian_text.value = localStorage.getItem('text')
+    if (tools_oof[0] === 'open') { //页面加载时判定上次关闭页面时便签窗口的显示状态
+        bianqian_text.className = 'show';
+        bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
     }
     else {
-        bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
-        bianqian_text.className = 'show';
-        tools_oof[0] = 'open';
-        localStorage.setItem('openoroff', tools_oof);
-        bianqian_text.focus();
+        bianqian_text.className = 'hide';
     }
-}
-bianqian_text.addEventListener('keyup', function () {//存储便签文本
-    let texts = bianqian_text.value;
-    localStorage.setItem('text', texts);
-})
+    bianqian.onclick = function () { //便签的显示和关闭
+        if (bianqian_text.className === 'show') {
+            bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0)'
+            bianqian_text.className = 'hide';
+            tools_oof[0] = 'off';
+            localStorage.setItem('openoroff', tools_oof);
+        }
+        else {
+            bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
+            bianqian_text.className = 'show';
+            tools_oof[0] = 'open';
+            localStorage.setItem('openoroff', tools_oof);
+            bianqian_text.focus();
+        }
+    }
+    bianqian_text.addEventListener('keyup', function () {//存储便签文本
+        let texts = bianqian_text.value;
+        localStorage.setItem('text', texts);
+    })
 
 //壁纸模糊
-var wallpaper_blur = document.getElementsByClassName('wallpaper_blur');
-bg = document.getElementById('bg');
-if (tools_oof[1] === 'open') {
-    bg.className = 'bg';
-}
-else {
-    bg.classList.remove('bg');
-}
-wallpaper_blur[0].onclick = function () {
-    if (tools_oof[1] === 'off') {
+    var wallpaper_blur = document.getElementsByClassName('wallpaper_blur');
+    bg = document.getElementById('bg');
+    if (tools_oof[1] === 'open') {
         bg.className = 'bg';
-        tools_oof[1] = 'open';
-        localStorage.setItem('openoroff', tools_oof);
     }
     else {
         bg.classList.remove('bg');
-        tools_oof[1] = 'off';
-        localStorage.setItem('openoroff', tools_oof);
     }
-}
+    wallpaper_blur[0].onclick = function () {
+        if (tools_oof[1] === 'off') {
+            bg.className = 'bg';
+            tools_oof[1] = 'open';
+            localStorage.setItem('openoroff', tools_oof);
+        }
+        else {
+            bg.classList.remove('bg');
+            tools_oof[1] = 'off';
+            localStorage.setItem('openoroff', tools_oof);
+        }
+    }
 //壁纸控制
-var control_up = document.getElementsByClassName('control_up')[0];
-var control_down = document.getElementsByClassName('control_down')[0];
-var wallpaper_get_url = document.getElementById('wallpaper_get_url');
-var wallpaper_get = document.getElementsByClassName('wallpaper_get')[0];
-var wallpaper_post = document.getElementsByClassName('wallpaper_post')[0];
-var wallpaper_switch = document.getElementsByClassName('wallpaper_switch')[0];
-var btn_file = document.getElementById('btn_file');
+    var control_up = document.getElementsByClassName('control_up')[0];
+    var control_down = document.getElementsByClassName('control_down')[0];
+    var wallpaper_get_url = document.getElementById('wallpaper_get_url');
+    var wallpaper_get = document.getElementsByClassName('wallpaper_get')[0];
+    var wallpaper_post = document.getElementsByClassName('wallpaper_post')[0];
+    var wallpaper_switch = document.getElementsByClassName('wallpaper_switch')[0];
+    var btn_file = document.getElementById('btn_file');
 
-var wallpaper_number = tools_oof[2];
+    var wallpaper_number = tools_oof[2];
 
 
-function bggg() { //背景更改函数
-    bg.style.background = 'url("./img/background/' + wallpaper_number + '.jpg") no-repeat 0 0';
-    bg.style.backgroundSize = 'cover';
-}
-
-bgqr();
-
-function bgqr() {
-    if (tools_oof[3] === 'open') {
-        wallpaper_switch.style.background = 'url(./svg/annexb.svg) no-repeat rgba(0, 0, 0, 0.7) center';
-        wallpaper_switch.style.backgroundSize = '90%';
-        let base64 = localStorage.getItem('base64');
-        bg.style.background = 'url(' + base64 + ')';
+    function bggg() { //背景更改函数
+        bg.style.background = 'url("./img/background/' + wallpaper_number + '.jpg") no-repeat 0 0';
         bg.style.backgroundSize = 'cover';
     }
-    else {
-        bggg();
-        wallpaper_switch.style.background = 'url(./svg/annex.svg) no-repeat rgba(0, 0, 0, 0.7) center';
-        wallpaper_switch.style.backgroundSize = '90%';
-    }
-}
 
-control_up.onclick = function () { //壁纸上回滚
-    wallpaper_number--;
-    if (wallpaper_number < 1) {
-        wallpaper_number = 5;
-    }
-    tools_oof[2] = wallpaper_number;
-    localStorage.setItem('openoroff', tools_oof);
-    bggg();
-    tools_oof[3] = 'off';
-    localStorage.setItem('openoroff', tools_oof);
     bgqr();
-}
-control_down.onclick = function () { //壁纸下前进
-    wallpaper_number++;
-    if (wallpaper_number > 5) {
-        wallpaper_number = 1;
-    }
-    tools_oof[2] = wallpaper_number;
-    localStorage.setItem('openoroff', tools_oof);
-    bggg();
-    tools_oof[3] = 'off';
-    localStorage.setItem('openoroff', tools_oof);
-    bgqr();
-}
 
-//下载壁纸
-wallpaper_get.onclick = function () {
-    wallpaper_get_url.href = './img/background/' + wallpaper_number + '.jpg';
-    wallpaper_get_url.download = 'background' + wallpaper_number + '.jpg';
-    wallpaper_get_url.click();
-}
-//使用自定义壁纸
-wallpaper_post.onclick = function () {
-    btn_file.click();
-}
-btn_file.onchange = function () {
-    changepic(this);
-    wallpaper_switch.style.background = 'url(./svg/annexb.svg) no-repeat rgba(0, 0, 0, 0.7) center';
-    wallpaper_switch.style.backgroundSize = '90%';
-    tools_oof[3] = 'open';
-    localStorage.setItem('openoroff', tools_oof);
-}
-
-function changepic(obj) {
-    //Base64
-    let img = getObjectURL(obj.files[0]);
-    let image = new Image();
-    image.src = img;
-    image.onload = function () {
-        let base64 = getBase64Image(image);
-        // console.log(base64);
-        try {
-            localStorage.setItem('base64', base64);
+    function bgqr() {
+        if (tools_oof[3] === 'open') {
+            wallpaper_switch.style.background = 'url(./svg/annexb.svg) no-repeat rgba(0, 0, 0, 0.7) center';
+            wallpaper_switch.style.backgroundSize = '90%';
+            let base64 = localStorage.getItem('base64');
             bg.style.background = 'url(' + base64 + ')';
             bg.style.backgroundSize = 'cover';
         }
-        catch (e) {
-            tools_oof[3] = 'off';
-            localStorage.setItem('openoroff',tools_oof);
-            bgqr();
-            alert('太大了，进不来');
+        else {
+            bggg();
+            wallpaper_switch.style.background = 'url(./svg/annex.svg) no-repeat rgba(0, 0, 0, 0.7) center';
+            wallpaper_switch.style.backgroundSize = '90%';
         }
     }
 
-    function getBase64Image(img) {
-        var canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-        var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
-        var dataURL = canvas.toDataURL("image/" + ext);
-        return dataURL;
-    }
-
-
-}
-
-function getObjectURL(file) {
-    var url = null;
-    if (window.createObjectURL != undefined) { // basic
-        url = window.createObjectURL(file);
-    } else if (window.URL != undefined) { // mozilla(firefox)
-        url = window.URL.createObjectURL(file);
-    } else if (window.webkitURL != undefined) { // webkit or chrome
-        url = window.webkitURL.createObjectURL(file);
-    }
-    return url;
-}
-
-wallpaper_switch.onclick = function () {
-    if (tools_oof[3] === 'open' && localStorage.getItem('base64') != null) {
+    control_up.onclick = function () { //壁纸上回滚
+        wallpaper_number--;
+        if (wallpaper_number < 1) {
+            wallpaper_number = 5;
+        }
+        tools_oof[2] = wallpaper_number;
+        localStorage.setItem('openoroff', tools_oof);
+        bggg();
         tools_oof[3] = 'off';
         localStorage.setItem('openoroff', tools_oof);
         bgqr();
     }
-    else if (tools_oof[3] === 'off' && localStorage.getItem('base64') != null) {
-        tools_oof[3] = 'open';
+    control_down.onclick = function () { //壁纸下前进
+        wallpaper_number++;
+        if (wallpaper_number > 5) {
+            wallpaper_number = 1;
+        }
+        tools_oof[2] = wallpaper_number;
+        localStorage.setItem('openoroff', tools_oof);
+        bggg();
+        tools_oof[3] = 'off';
         localStorage.setItem('openoroff', tools_oof);
         bgqr();
     }
-    else {
-        alert('请先添加自定义壁纸');
+
+//下载壁纸
+    wallpaper_get.onclick = function () {
+        wallpaper_get_url.href = './img/background/' + wallpaper_number + '.jpg';
+        wallpaper_get_url.download = 'background' + wallpaper_number + '.jpg';
+        wallpaper_get_url.click();
+    }
+//使用自定义壁纸
+    wallpaper_post.onclick = function () {
         btn_file.click();
     }
-}
+    btn_file.onchange = function () {
+        changepic(this);
+        wallpaper_switch.style.background = 'url(./svg/annexb.svg) no-repeat rgba(0, 0, 0, 0.7) center';
+        wallpaper_switch.style.backgroundSize = '90%';
+        tools_oof[3] = 'open';
+        localStorage.setItem('openoroff', tools_oof);
+    }
+
+    function changepic(obj) {
+        //Base64
+        let img = getObjectURL(obj.files[0]);
+        let image = new Image();
+        image.src = img;
+        image.onload = function () {
+            let base64 = getBase64Image(image);
+            // console.log(base64);
+            try {
+                localStorage.setItem('base64', base64);
+                bg.style.background = 'url(' + base64 + ')';
+                bg.style.backgroundSize = 'cover';
+            }
+            catch (e) {
+                tools_oof[3] = 'off';
+                localStorage.setItem('openoroff', tools_oof);
+                bgqr();
+                alert('太大了，进不来');
+            }
+        }
+
+        function getBase64Image(img) {
+            var canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+            var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
+            var dataURL = canvas.toDataURL("image/" + ext);
+            return dataURL;
+        }
+
+
+    }
+
+    function getObjectURL(file) {
+        var url = null;
+        if (window.createObjectURL != undefined) { // basic
+            url = window.createObjectURL(file);
+        } else if (window.URL != undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file);
+        } else if (window.webkitURL != undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+
+    wallpaper_switch.onclick = function () {
+        if (tools_oof[3] === 'open' && localStorage.getItem('base64') != null) {
+            tools_oof[3] = 'off';
+            localStorage.setItem('openoroff', tools_oof);
+            bgqr();
+        }
+        else if (tools_oof[3] === 'off' && localStorage.getItem('base64') != null) {
+            tools_oof[3] = 'open';
+            localStorage.setItem('openoroff', tools_oof);
+            bgqr();
+        }
+        else {
+            alert('请先添加自定义壁纸');
+            btn_file.click();
+        }
+    }
