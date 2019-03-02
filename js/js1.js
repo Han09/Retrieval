@@ -28,7 +28,7 @@ document.addEventListener('click', function () {
     if (retrieval_v8.className === 'show') {//搜索引擎列表
         retrieval_v8.className = 'hide';
     }
-    if(setWindows.className ==='show'){//设置列表
+    if (setWindows.className === 'show') {//设置列表
         setWindows.className = 'hide';
         set.classList.remove('animationSet');
     }
@@ -366,7 +366,28 @@ var wallpaper_number = tools_oof[2];
 
 
 function bggg() { //背景更改函数
-    bg.style.background = 'url("./img/background/' + wallpaper_number + '.jpg") no-repeat 0 0';
+    // bg.style.background = 'url("./img/background/' + wallpaper_number + '.jpg") no-repeat 0 0';
+    wallpaper_number = Number(wallpaper_number)//字符串转数字；
+    switch (wallpaper_number) {
+        case 1:
+            bg.style.background = 'url("https://pic.superbed.cn/item/5c7a56003a213b0417fedc09") no-repeat 0 0';
+            break;
+        case 2:
+            bg.style.background = 'url("https://pic.superbed.cn/item/5c7a58513a213b0417feffda") no-repeat 0 0';
+            break;
+        case 3:
+            bg.style.background = 'url("https://pic.superbed.cn/item/5c7a56d23a213b0417fee990") no-repeat 0 0';
+            break;
+        case 4:
+            bg.style.background = 'url("https://pic.superbed.cn/item/5c7a58663a213b0417ff0155") no-repeat 0 0';
+            break;
+        case 5:
+            bg.style.background = 'url("https://pic.superbed.cn/item/5c7a587c3a213b0417ff02dc") no-repeat 0 0';
+            break;
+        default:
+            bg.style.background = 'url("https://pic.superbed.cn/item/5c7a56003a213b0417fedc09") no-repeat 0 0';
+            break;
+    }
     bg.style.backgroundSize = 'cover';
 }
 
