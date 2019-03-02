@@ -257,6 +257,9 @@ footer {
     user-select: none;
 
 }
+#info{
+    vertical-align: middle;
+}
 
 footer span {
     color: white;
@@ -516,7 +519,68 @@ a {
     height: 250px;
     background: rgba(252, 203, 79, 0.9);
 }
+#set{
+    width: 40px;
+    height: 40px;
+    margin: 13px;
+    position: absolute;
+    bottom: 20px;
+    right: 22px;
+    border-radius: 20px;
+    background: url("../svg/set.svg") center no-repeat;
+}
+#set:hover{
+    background-color: rgba(40, 39, 25, 0.78);
+    cursor: pointer;
+    -webkit-animation: set 30s;
+    -o-animation: set 30s;
+    animation: set 30s;
+}
+.animationSet{
+    -webkit-animation: set 30s;
+    -o-animation: set 30s;
+    animation: set 30s;
+}
+@keyframes set {
+    1%{
+        transform: rotate(1deg);
+    }
+    100%{
+        transform: rotate(360000deg);
+    }
 
+}
+#setWindows{
+    width: 250px;
+    height: 150px;
+    background-color: whitesmoke;
+    border-radius: 7px;
+    position: absolute;
+    bottom: 80px;
+    right: 40px;
+}
+#setWindows:after{
+    content: '';
+    background: whitesmoke;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    position: absolute;
+    bottom: -5px;
+    right: 10px;
+    z-index: -1;
+}
+.setItem{
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+    font-size: 14px;
+    user-select:none;
+    cursor: pointer;
+}
+.setItem:hover{
+    background: rgba(47, 47, 47, 0.2);
+}
 /*变更样式区*/
 .button_CanUse {
     background: transparent;
@@ -527,6 +591,6 @@ a {
 }
 
 .hide {
-    display: none;
+    display: none; !important;
 }
 

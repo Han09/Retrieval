@@ -23,10 +23,14 @@ v8_main.addEventListener('click', function (event) {
         retrieval_v8.className = 'show';
     }
 });
-//点击区域外自动关闭搜索引擎列表
+//点击区域外自动关闭搜索引擎列表和设置列表
 document.addEventListener('click', function () {
-    if (retrieval_v8.className === 'show') {
+    if (retrieval_v8.className === 'show') {//搜索引擎列表
         retrieval_v8.className = 'hide';
+    }
+    if(setWindows.className ==='show'){//设置列表
+        setWindows.className = 'hide';
+        set.classList.remove('animationSet');
     }
 });
 
@@ -45,13 +49,12 @@ for (let i = 0; i < svg.length; i++) {
 //默认搜索引擎
 var DE = localStorage.getItem('Default engine');
 if (!DE) {
-    console.log('???');
     localStorage.setItem('Default engine', 'baidu');
     v8_main.setAttribute('src', './img/v8_icon/baidu.svg');
     v8_main.setAttribute('use', 'baidu');
 }
 else {
-    v8_main.setAttribute('src', './img/v8_icon/'+DE+'.svg');
+    v8_main.setAttribute('src', './img/v8_icon/' + DE + '.svg');
     v8_main.setAttribute('use', DE);
 }
 
@@ -199,6 +202,7 @@ function getword() {
     document.head.appendChild(script);
     document.head.removeChild(script);
 }
+
 //获取候选词  ajax
 // function getword() {
 //     clean_words();
@@ -280,210 +284,286 @@ function getword() {
 
 
 //状态存储
-    var OOF = localStorage.getItem('openoroff');
-    if (OOF === null) { //第一次使用时添加默认设置
-        var oof = new Array();
-        oof[0] = 'open';//便签的开关状态 默认为开
-        oof[1] = 'off'; //壁纸模糊的开关状态 默认为关
-        oof[2] = '1'; //当前壁纸序号 默认为1；
-        oof[3] = 'off';//自定义壁纸开关状态，默认为关
-        localStorage.setItem('openoroff', oof);
-    }
-    var tools_oof = localStorage.getItem('openoroff').split(',');
+var OOF = localStorage.getItem('openoroff');
+if (OOF === null) { //第一次使用时添加默认设置
+    var oof = new Array();
+    oof[0] = 'open';//便签的开关状态 默认为开
+    oof[1] = 'off'; //壁纸模糊的开关状态 默认为关
+    oof[2] = '1'; //当前壁纸序号 默认为1；
+    oof[3] = 'off';//自定义壁纸开关状态，默认为关
+    oof[4] = 'open';//壁纸控制栏的显示状态，默认显示
+    oof[5] = 'open';//便签按钮的显示状态，默认显示
+    localStorage.setItem('openoroff', oof);
+}
+var tools_oof = localStorage.getItem('openoroff').split(',');
 
 //便签
-var bianqiantxt =  localStorage.getItem('text');
-    if(bianqiantxt){
-        bianqian_text.value = bianqiantxt;
-    }
-    else{
-        bianqian_text.value = '';
-    }
-    if (tools_oof[0] === 'open') { //页面加载时判定上次关闭页面时便签窗口的显示状态
-        bianqian_text.className = 'show';
-        bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
+var bianqiantxt = localStorage.getItem('text');
+if (bianqiantxt) {
+    bianqian_text.value = bianqiantxt;
+}
+else {
+    bianqian_text.value = '';
+}
+if (tools_oof[0] === 'open') { //页面加载时判定上次关闭页面时便签窗口的显示状态
+    bianqian_text.className = 'show';
+    bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
+}
+else {
+    bianqian_text.className = 'hide';
+}
+bianqian.onclick = function () { //便签的显示和关闭
+    if (bianqian_text.className === 'show') {
+        bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0)'
+        bianqian_text.className = 'hide';
+        tools_oof[0] = 'off';
+        localStorage.setItem('openoroff', tools_oof);
     }
     else {
-        bianqian_text.className = 'hide';
+        bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
+        bianqian_text.className = 'show';
+        tools_oof[0] = 'open';
+        localStorage.setItem('openoroff', tools_oof);
+        bianqian_text.focus();
     }
-    bianqian.onclick = function () { //便签的显示和关闭
-        if (bianqian_text.className === 'show') {
-            bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0)'
-            bianqian_text.className = 'hide';
-            tools_oof[0] = 'off';
-            localStorage.setItem('openoroff', tools_oof);
-        }
-        else {
-            bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
-            bianqian_text.className = 'show';
-            tools_oof[0] = 'open';
-            localStorage.setItem('openoroff', tools_oof);
-            bianqian_text.focus();
-        }
-    }
-    bianqian_text.addEventListener('keyup', function () {//存储便签文本
-        let texts = bianqian_text.value;
-        localStorage.setItem('text', texts);
-    })
+}
+bianqian_text.addEventListener('keyup', function () {//存储便签文本
+    let texts = bianqian_text.value;
+    localStorage.setItem('text', texts);
+})
 
 //壁纸模糊
-    var wallpaper_blur = document.getElementsByClassName('wallpaper_blur');
-    bg = document.getElementById('bg');
-    if (tools_oof[1] === 'open') {
+var wallpaper_blur = document.getElementsByClassName('wallpaper_blur');
+bg = document.getElementById('bg');
+if (tools_oof[1] === 'open') {
+    bg.className = 'bg';
+}
+else {
+    bg.classList.remove('bg');
+}
+wallpaper_blur[0].onclick = function () {
+    if (tools_oof[1] === 'off') {
         bg.className = 'bg';
+        tools_oof[1] = 'open';
+        localStorage.setItem('openoroff', tools_oof);
     }
     else {
         bg.classList.remove('bg');
+        tools_oof[1] = 'off';
+        localStorage.setItem('openoroff', tools_oof);
     }
-    wallpaper_blur[0].onclick = function () {
-        if (tools_oof[1] === 'off') {
-            bg.className = 'bg';
-            tools_oof[1] = 'open';
-            localStorage.setItem('openoroff', tools_oof);
-        }
-        else {
-            bg.classList.remove('bg');
-            tools_oof[1] = 'off';
-            localStorage.setItem('openoroff', tools_oof);
-        }
-    }
+}
 //壁纸控制
-    var control_up = document.getElementsByClassName('control_up')[0];
-    var control_down = document.getElementsByClassName('control_down')[0];
-    var wallpaper_get_url = document.getElementById('wallpaper_get_url');
-    var wallpaper_get = document.getElementsByClassName('wallpaper_get')[0];
-    var wallpaper_post = document.getElementsByClassName('wallpaper_post')[0];
-    var wallpaper_switch = document.getElementsByClassName('wallpaper_switch')[0];
-    var btn_file = document.getElementById('btn_file');
+var control_up = document.getElementsByClassName('control_up')[0];
+var control_down = document.getElementsByClassName('control_down')[0];
+var wallpaper_get_url = document.getElementById('wallpaper_get_url');
+var wallpaper_get = document.getElementsByClassName('wallpaper_get')[0];
+var wallpaper_post = document.getElementsByClassName('wallpaper_post')[0];
+var wallpaper_switch = document.getElementsByClassName('wallpaper_switch')[0];
+var btn_file = document.getElementById('btn_file');
 
-    var wallpaper_number = tools_oof[2];
+var wallpaper_number = tools_oof[2];
 
 
-    function bggg() { //背景更改函数
-        bg.style.background = 'url("./img/background/' + wallpaper_number + '.jpg") no-repeat 0 0';
+function bggg() { //背景更改函数
+    bg.style.background = 'url("./img/background/' + wallpaper_number + '.jpg") no-repeat 0 0';
+    bg.style.backgroundSize = 'cover';
+}
+
+bgqr();
+
+function bgqr() {
+    if (tools_oof[3] === 'open') {
+        wallpaper_switch.style.background = 'url(./svg/annexb.svg) no-repeat rgba(0, 0, 0, 0.7) center';
+        wallpaper_switch.style.backgroundSize = '90%';
+        let base64 = localStorage.getItem('base64');
+        bg.style.background = 'url(' + base64 + ')';
         bg.style.backgroundSize = 'cover';
     }
+    else {
+        bggg();
+        wallpaper_switch.style.background = 'url(./svg/annex.svg) no-repeat rgba(0, 0, 0, 0.7) center';
+        wallpaper_switch.style.backgroundSize = '90%';
+    }
+}
 
+control_up.onclick = function () { //壁纸上回滚
+    wallpaper_number--;
+    if (wallpaper_number < 1) {
+        wallpaper_number = 5;
+    }
+    tools_oof[2] = wallpaper_number;
+    localStorage.setItem('openoroff', tools_oof);
+    bggg();
+    tools_oof[3] = 'off';
+    localStorage.setItem('openoroff', tools_oof);
     bgqr();
+}
+control_down.onclick = function () { //壁纸下前进
+    wallpaper_number++;
+    if (wallpaper_number > 5) {
+        wallpaper_number = 1;
+    }
+    tools_oof[2] = wallpaper_number;
+    localStorage.setItem('openoroff', tools_oof);
+    bggg();
+    tools_oof[3] = 'off';
+    localStorage.setItem('openoroff', tools_oof);
+    bgqr();
+}
 
-    function bgqr() {
-        if (tools_oof[3] === 'open') {
-            wallpaper_switch.style.background = 'url(./svg/annexb.svg) no-repeat rgba(0, 0, 0, 0.7) center';
-            wallpaper_switch.style.backgroundSize = '90%';
-            let base64 = localStorage.getItem('base64');
+//下载壁纸
+wallpaper_get.onclick = function () {
+    wallpaper_get_url.href = './img/background/' + wallpaper_number + '.jpg';
+    wallpaper_get_url.download = 'background' + wallpaper_number + '.jpg';
+    wallpaper_get_url.click();
+}
+//使用自定义壁纸
+wallpaper_post.onclick = function () {
+    btn_file.click();
+}
+btn_file.onchange = function () {
+    changepic(this);
+    wallpaper_switch.style.background = 'url(./svg/annexb.svg) no-repeat rgba(0, 0, 0, 0.7) center';
+    wallpaper_switch.style.backgroundSize = '90%';
+    tools_oof[3] = 'open';
+    localStorage.setItem('openoroff', tools_oof);
+}
+
+function changepic(obj) {
+    //Base64
+    let img = getObjectURL(obj.files[0]);
+    let image = new Image();
+    image.src = img;
+    image.onload = function () {
+        let base64 = getBase64Image(image);
+        // console.log(base64);
+        try {
+            localStorage.setItem('base64', base64);
             bg.style.background = 'url(' + base64 + ')';
             bg.style.backgroundSize = 'cover';
         }
-        else {
-            bggg();
-            wallpaper_switch.style.background = 'url(./svg/annex.svg) no-repeat rgba(0, 0, 0, 0.7) center';
-            wallpaper_switch.style.backgroundSize = '90%';
-        }
-    }
-
-    control_up.onclick = function () { //壁纸上回滚
-        wallpaper_number--;
-        if (wallpaper_number < 1) {
-            wallpaper_number = 5;
-        }
-        tools_oof[2] = wallpaper_number;
-        localStorage.setItem('openoroff', tools_oof);
-        bggg();
-        tools_oof[3] = 'off';
-        localStorage.setItem('openoroff', tools_oof);
-        bgqr();
-    }
-    control_down.onclick = function () { //壁纸下前进
-        wallpaper_number++;
-        if (wallpaper_number > 5) {
-            wallpaper_number = 1;
-        }
-        tools_oof[2] = wallpaper_number;
-        localStorage.setItem('openoroff', tools_oof);
-        bggg();
-        tools_oof[3] = 'off';
-        localStorage.setItem('openoroff', tools_oof);
-        bgqr();
-    }
-
-//下载壁纸
-    wallpaper_get.onclick = function () {
-        wallpaper_get_url.href = './img/background/' + wallpaper_number + '.jpg';
-        wallpaper_get_url.download = 'background' + wallpaper_number + '.jpg';
-        wallpaper_get_url.click();
-    }
-//使用自定义壁纸
-    wallpaper_post.onclick = function () {
-        btn_file.click();
-    }
-    btn_file.onchange = function () {
-        changepic(this);
-        wallpaper_switch.style.background = 'url(./svg/annexb.svg) no-repeat rgba(0, 0, 0, 0.7) center';
-        wallpaper_switch.style.backgroundSize = '90%';
-        tools_oof[3] = 'open';
-        localStorage.setItem('openoroff', tools_oof);
-    }
-
-    function changepic(obj) {
-        //Base64
-        let img = getObjectURL(obj.files[0]);
-        let image = new Image();
-        image.src = img;
-        image.onload = function () {
-            let base64 = getBase64Image(image);
-            // console.log(base64);
-            try {
-                localStorage.setItem('base64', base64);
-                bg.style.background = 'url(' + base64 + ')';
-                bg.style.backgroundSize = 'cover';
-            }
-            catch (e) {
-                tools_oof[3] = 'off';
-                localStorage.setItem('openoroff', tools_oof);
-                bgqr();
-                alert('太大了，进不来');
-            }
-        }
-
-        function getBase64Image(img) {
-            var canvas = document.createElement("canvas");
-            canvas.width = img.width;
-            canvas.height = img.height;
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, img.width, img.height);
-            var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
-            var dataURL = canvas.toDataURL("image/" + ext);
-            return dataURL;
-        }
-
-
-    }
-
-    function getObjectURL(file) {
-        var url = null;
-        if (window.createObjectURL != undefined) { // basic
-            url = window.createObjectURL(file);
-        } else if (window.URL != undefined) { // mozilla(firefox)
-            url = window.URL.createObjectURL(file);
-        } else if (window.webkitURL != undefined) { // webkit or chrome
-            url = window.webkitURL.createObjectURL(file);
-        }
-        return url;
-    }
-
-    wallpaper_switch.onclick = function () {
-        if (tools_oof[3] === 'open' && localStorage.getItem('base64') != null) {
+        catch (e) {
             tools_oof[3] = 'off';
             localStorage.setItem('openoroff', tools_oof);
             bgqr();
-        }
-        else if (tools_oof[3] === 'off' && localStorage.getItem('base64') != null) {
-            tools_oof[3] = 'open';
-            localStorage.setItem('openoroff', tools_oof);
-            bgqr();
-        }
-        else {
-            alert('请先添加自定义壁纸');
-            btn_file.click();
+            alert('太大了，进不来');
         }
     }
+
+    function getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+        var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
+        var dataURL = canvas.toDataURL("image/" + ext);
+        return dataURL;
+    }
+
+
+}
+
+function getObjectURL(file) {
+    var url = null;
+    if (window.createObjectURL != undefined) { // basic
+        url = window.createObjectURL(file);
+    } else if (window.URL != undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file);
+    } else if (window.webkitURL != undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file);
+    }
+    return url;
+}
+
+//自定义壁纸开关
+wallpaper_switch.onclick = function () {
+    if (tools_oof[3] === 'open' && localStorage.getItem('base64') != null) {
+        tools_oof[3] = 'off';
+        localStorage.setItem('openoroff', tools_oof);
+        bgqr();
+    }
+    else if (tools_oof[3] === 'off' && localStorage.getItem('base64') != null) {
+        tools_oof[3] = 'open';
+        localStorage.setItem('openoroff', tools_oof);
+        bgqr();
+    }
+    else {
+        alert('请先添加自定义壁纸');
+        btn_file.click();
+    }
+}
+//info图标
+var info = document.getElementById('info');
+var infotxt = document.getElementById('infotxt');
+info.onclick = function () {
+    infotxt.innerText = '请尽可能使用Chrome或Firfox访问，其他浏览器暂未作兼容适配.';
+}
+
+//设置窗口
+var set = document.getElementById('set');
+setWindows = document.getElementById('setWindows');
+set.addEventListener('click', function (event) {
+    event.stopPropagation();
+    if (setWindows.className === 'show') {
+        setWindows.className = 'hide';
+        set.classList.remove('animationSet');
+    }
+    else if (setWindows.className === 'hide') {
+        setWindows.className = 'show';
+        set.className = 'animationSet';
+    }
+});
+
+//页面重置，清空所有localstorage；
+var reset = document.getElementById('reset');
+reset.onclick = function () {
+    localStorage.clear();
+    window.location.reload();
+}
+
+//壁纸控制栏的隐藏
+var wallpaperSwitch = document.getElementById('wallpaperSwitch');
+bianqianSwitch = document.getElementById('bianqianSwitch');
+wallpaper = document.getElementsByClassName('wallpaper')[0];
+if (tools_oof[4] === 'off') {
+    wallpaper.classList.add('hide');
+    wallpaper_blur[0].classList.add('hide');
+}
+wallpaperSwitch.onclick = function () {
+    if (tools_oof[4] === 'open') {
+        wallpaper.classList.add('hide');
+        wallpaper_blur[0].classList.add('hide');
+        tools_oof[4] = 'off';
+        localStorage.setItem('openoroff', tools_oof);
+    }
+    else {
+        wallpaper.classList.remove('hide');
+        wallpaper_blur[0].classList.remove('hide');
+        tools_oof[4] = 'open';
+        localStorage.setItem('openoroff', tools_oof);
+    }
+}
+
+//便签栏的隐藏
+var bianqianButton = document.getElementsByClassName('tools')[0];
+if (tools_oof[5] === 'off') {
+    bianqianButton.classList.add('hide');
+}
+bianqianSwitch.onclick = function () {
+    if (tools_oof[5] === 'open') {
+        bianqianButton.classList.add('hide');
+        bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0)';
+        bianqian_text.className = 'hide';
+        tools_oof[0] = 'off';
+        tools_oof[5] = 'off';
+        localStorage.setItem('openoroff', tools_oof);
+
+    }
+    else {
+        bianqianButton.classList.remove('hide');
+        tools_oof[5] = 'open';
+        localStorage.setItem('openoroff', tools_oof);
+    }
+}
