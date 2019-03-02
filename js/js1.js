@@ -193,10 +193,10 @@ function getword() {
             script.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?cb=defaultSug&wd=' + retrieval_value;
             break;
         case 'google':
-            script.src = 'http://suggestqueries.google.com/complete/search?client=psy-ab&hl=zh-CN&jsonp=forGoogle&q=' + retrieval_value;
+            script.src = 'https://suggestqueries.google.com/complete/search?client=psy-ab&hl=zh-CN&jsonp=forGoogle&q=' + retrieval_value;
             break;
         case 'taobao':
-            script.src = 'http://suggest.taobao.com/sug?code=utf-8&q=' + retrieval_value + '&callback=cb ';
+            script.src = 'https://suggest.taobao.com/sug?code=utf-8&q=' + retrieval_value + '&callback=cb ';
             break;
     }
     document.head.appendChild(script);
