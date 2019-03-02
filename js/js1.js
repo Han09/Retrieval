@@ -146,7 +146,7 @@ retrieval_clean.onclick = function () {
 
 function clean_words() {
     for (i = 0; i < word_item.length; i++) {
-        word_item[i].innerHTML = null;
+        word_item[i].innerHTML = '';
         word_item[i].classList.remove('SN');
     }
 }
@@ -366,9 +366,9 @@ var wallpaper_number = tools_oof[2];
 
 
 function bggg() { //背景更改函数
-    // bg.style.background = 'url("./img/background/' + wallpaper_number + '.jpg") no-repeat 0 0';
+    // bg.style.background = 'url("./img/background/' + wallpaper_number + '.jpg") no-repeat 0 0';//本地加载
     wallpaper_number = Number(wallpaper_number)//字符串转数字；
-    switch (wallpaper_number) {
+    switch (wallpaper_number) {//图床匹配加载
         case 1:
             bg.style.background = 'url("https://pic.superbed.cn/item/5c7a56003a213b0417fedc09") no-repeat 0 0';
             break;
