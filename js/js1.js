@@ -44,7 +44,7 @@ for (let i = 0; i < svg.length; i++) {
 }
 //默认搜索引擎
 var DE = localStorage.getItem('Default engine');
-if (DE === 'null') {
+if (!DE) {
     console.log('???');
     localStorage.setItem('Default engine', 'baidu');
     v8_main.setAttribute('src', './img/v8_icon/baidu.svg');
@@ -292,7 +292,13 @@ function getword() {
     var tools_oof = localStorage.getItem('openoroff').split(',');
 
 //便签
-    bianqian_text.value = localStorage.getItem('text')
+var bianqiantxt =  localStorage.getItem('text');
+    if(bianqiantxt){
+        bianqian_text.value = bianqiantxt;
+    }
+    else{
+        bianqian_text.value = '';
+    }
     if (tools_oof[0] === 'open') { //页面加载时判定上次关闭页面时便签窗口的显示状态
         bianqian_text.className = 'show';
         bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
