@@ -7,7 +7,6 @@ word_item = document.getElementsByClassName('word_item');
 SN = document.getElementsByClassName('SN');
 go = document.getElementById('retrieval_go');
 select = document.getElementsByClassName('select');
-xulie = 0;
 retrieval_clean = document.getElementById('retrieval_clean');
 bianqian = document.getElementById('bianqian');
 bianqian_text = document.getElementById('bianqian_text');
@@ -95,6 +94,7 @@ for (let p = 0; p < word_item.length; p++) {
 }
 
 //上下键选择
+var xulie = 0;
 retrieval.onfocus = function () {
     retrieval.onkeyup = function (e) {
         switch (e.which) {
@@ -126,6 +126,8 @@ retrieval.onfocus = function () {
                 catch (e) {
                     go.click();
                 }
+                clean_select();
+                xulie = 0;
                 break;
         }
     }

@@ -182,7 +182,7 @@ nav {
 }
 
 .select {
-    background: rgba(180, 176, 184, 0.3);
+    background: rgba(240, 245, 255, 0.5);
 }
 
 .word_item:last-child {
@@ -629,7 +629,6 @@ a {
 }
 
 .hide {
-    display: none;
-!important;
+    display: none;!important;
 }
 
