@@ -306,22 +306,22 @@ else {
     bianqian_text.value = '';
 }
 if (tools_oof[0] === 'open') { //页面加载时判定上次关闭页面时便签窗口的显示状态
-    bianqian_text.className = 'show';
+    bianqian_text.className = 'bianqian_text_open';
     bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
 }
 else {
-    bianqian_text.className = 'hide';
+    bianqian_text.className = 'bianqian_text';
 }
 bianqian.onclick = function () { //便签的显示和关闭
-    if (bianqian_text.className === 'show') {
-        bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0)'
-        bianqian_text.className = 'hide';
+    if (bianqian_text.className === 'bianqian_text_open') {
+        bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0)';
+        bianqian_text.className = 'bianqian_text';
         tools_oof[0] = 'off';
         localStorage.setItem('openoroff', tools_oof);
     }
     else {
         bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
-        bianqian_text.className = 'show';
+        bianqian_text.className = 'bianqian_text_open';
         tools_oof[0] = 'open';
         localStorage.setItem('openoroff', tools_oof);
         bianqian_text.focus();

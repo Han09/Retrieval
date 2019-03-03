@@ -1,5 +1,10 @@
 body {
     margin: 0;
+    font-family: "Cereal", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+input, label, select, option, textarea, button {
+    font-family: "Cereal", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
 }
 
 #bg {
@@ -20,15 +25,11 @@ body {
     position: absolute;
     left: -10px;
     top: -10px;
-    background:inherit;
+    background: inherit;
     filter: blur(10px);
     z-index: -10;
 }
 
-/*@font-face {*/
-/*font-family: google;*/
-/*src: url("../font/ProductSans-Regular.ttf");*/
-/*}*/
 header {
     height: 70px;
     margin-top: 20vh;
@@ -46,6 +47,7 @@ nav {
 
 #retrieval_v8_main {
     width: 30px;
+    height: 30px;
     outline: none;
 }
 
@@ -91,13 +93,14 @@ nav {
     top: calc(50% - 14px);
     z-index: 100;
     user-select: none;
-
 }
 
 #retrieval_value {
-    border: 2px solid #a89ea7;
+    border: none;
+    color: #1e2220;
+    background: rgba(225, 225, 225, 0.8);
     border-radius: 25px;
-    height: 40px;
+    height: 44px;
     width: 500px;
     padding-left: 40px;
     transition: box-shadow 500ms;
@@ -105,11 +108,20 @@ nav {
     position: absolute;
     top: calc(50% - 22px);
     left: calc(50% - 272px);
+    -o-clear: none;
+    clear: none;
+}
 
+::-ms-clear {
+    display: none;
+}
+
+::-ms-reveal {
+    display: none;
 }
 
 #retrieval_value:focus {
-    box-shadow: 0 0 10px blue;
+    box-shadow: 0 0 3px rgba(225, 225, 225, 0.8);
     outline: none;
 }
 
@@ -148,17 +160,15 @@ nav {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 2px solid #a89ea7;
     border-top: none;
     border-radius: 0 0 10px 10px;
-    background: white;
+    background: rgba(225, 225, 225, 0.8);
     width: 464px;
     position: absolute;
     left: calc(50% - 232px);
-    top: calc(50% + 22px);
+    top: calc(50% + 24px);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 10px blue;
     z-index: -1;
 }
 
@@ -258,7 +268,8 @@ footer {
     user-select: none;
 
 }
-#info{
+
+#info {
     vertical-align: middle;
 }
 
@@ -515,12 +526,30 @@ a {
     z-index: 101;
 }
 
-#bianqian_text {
+.bianqian_text_open {
     width: 200px;
     height: 250px;
     background: rgba(252, 203, 79, 0.9);
+    border: none;
+    outline: none;
+    -ms-overflow-style: none;
+    font-size: 12px;
+    transition: width 300ms, height 300ms ,opacity 300ms;
 }
-#set{
+
+.bianqian_text {
+    width: 0;
+    height: 0;
+    background: rgba(252, 203, 79, 0.9);
+    border: none;
+    outline: none;
+    -ms-overflow-style: none;
+    transition: width 300ms, height 300ms ,opacity 300ms;
+    opacity: 0;
+}
+
+/*设置按钮和窗口*/
+#set {
     width: 40px;
     height: 40px;
     margin: 13px;
@@ -530,28 +559,32 @@ a {
     border-radius: 20px;
     background: url("../svg/set.svg") center no-repeat;
 }
-#set:hover{
-    background-color: rgba(40, 39, 25, 0.78);
+
+#set:hover {
+    background-color: rgba(40, 39, 25, 0.4);
     cursor: pointer;
     -webkit-animation: set 30s;
     -o-animation: set 30s;
     animation: set 30s;
 }
-.animationSet{
+
+.animationSet {
     -webkit-animation: set 30s;
     -o-animation: set 30s;
     animation: set 30s;
 }
+
 @keyframes set {
-    1%{
+    1% {
         transform: rotate(1deg);
     }
-    100%{
+    100% {
         transform: rotate(360000deg);
     }
 
 }
-#setWindows{
+
+#setWindows {
     width: 250px;
     height: 150px;
     background-color: whitesmoke;
@@ -560,7 +593,8 @@ a {
     bottom: 80px;
     right: 40px;
 }
-#setWindows:after{
+
+#setWindows:after {
     content: '';
     background: whitesmoke;
     width: 10px;
@@ -571,17 +605,20 @@ a {
     right: 10px;
     z-index: -1;
 }
-.setItem{
+
+.setItem {
     height: 50px;
     line-height: 50px;
     padding-left: 20px;
     font-size: 14px;
-    user-select:none;
+    user-select: none;
     cursor: pointer;
 }
-.setItem:hover{
+
+.setItem:hover {
     background: rgba(47, 47, 47, 0.2);
 }
+
 /*变更样式区*/
 .button_CanUse {
     background: transparent;
@@ -592,6 +629,7 @@ a {
 }
 
 .hide {
-    display: none; !important;
+    display: none;
+!important;
 }
 
