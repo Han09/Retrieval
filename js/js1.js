@@ -287,6 +287,7 @@ function getword() {
 
 //状态存储
 var OOF = localStorage.getItem('openoroff');
+
 if (OOF === null) { //第一次使用时添加默认设置
     var oof = new Array();
     oof[0] = 'open';//便签的开关状态 默认为开
@@ -554,7 +555,8 @@ if (tools_oof[4] === 'off') {
     wallpaper.classList.add('hide');
     wallpaper_blur[0].classList.add('hide');
 }
-wallpaperSwitch.onclick = function () {
+wallpaperSwitch.addEventListener('click', function (event) {
+    event.stopPropagation();
     if (tools_oof[4] === 'open') {
         wallpaper.classList.add('hide');
         wallpaper_blur[0].classList.add('hide');
@@ -567,14 +569,15 @@ wallpaperSwitch.onclick = function () {
         tools_oof[4] = 'open';
         localStorage.setItem('openoroff', tools_oof);
     }
-}
+})
 
 //便签栏的隐藏
 var bianqianButton = document.getElementsByClassName('tools')[0];
 if (tools_oof[5] === 'off') {
     bianqianButton.classList.add('hide');
 }
-bianqianSwitch.onclick = function () {
+bianqianSwitch.addEventListener('click', function (event) {
+    event.stopPropagation();
     if (tools_oof[5] === 'open') {
         bianqianButton.classList.add('hide');
         bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0)';
@@ -589,4 +592,74 @@ bianqianSwitch.onclick = function () {
         tools_oof[5] = 'open';
         localStorage.setItem('openoroff', tools_oof);
     }
+})
+
+//备份和恢复
+var backup_G = document.getElementById('backup_G');
+backup_ok = document.getElementById('backup_ok');
+backup_value = document.getElementById('backup_value');
+backup_G.addEventListener('click', function (event) {
+    event.stopPropagation();
+    let backuptext = '';
+    for (var i = 0; i < localStorage.length; i++) {
+        backuptext += localStorage.key(i) + "`" + localStorage.getItem(localStorage.key(i)) + "~"
+    }
+    backup_value.value = compileStr(backuptext);
+    saveFile(compileStr(backuptext));
+})
+backup_ok.onclick = function () {
+    localStorage.clear();
+    let uptext = uncompileStr(backup_value.value).split("~");
+    for (i = 0; i < uptext.length; i++) {
+        if (!uptext[i]) {
+            //无需操作
+        }
+        else {
+            let backuptext = uptext[i].split('`');
+            localStorage.setItem(backuptext[0], backuptext[1]);
+        }
+    }
+    window.location.reload();
+}
+backup_value.addEventListener("click", function (event) {
+    event.stopPropagation();
+})
+
+//生成TXT文件
+function fakeClick(obj) {
+    var ev = document.createEvent("MouseEvents");
+    ev.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    obj.dispatchEvent(ev);
+}
+
+function exportRaw(name, data) {
+    var urlObject = window.URL || window.webkitURL || window;
+    var export_blob = new Blob([data]);
+    var save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a")
+    save_link.href = urlObject.createObjectURL(export_blob);
+    save_link.download = name;
+    fakeClick(save_link);
+}
+
+function saveFile(text) {
+    var inValue = text;
+    exportRaw('Retrieval.txt', inValue);
+}
+
+//对字符串进行混淆
+function compileStr(code) {
+    var c = String.fromCharCode(code.charCodeAt(0) + code.length);
+    for (var i = 1; i < code.length; i++) {
+        c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1));
+    }
+    return escape(c);
+}
+
+function uncompileStr(code) { //字符串解混淆
+    code = unescape(code);
+    var c = String.fromCharCode(code.charCodeAt(0) - code.length);
+    for (var i = 1; i < code.length; i++) {
+        c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i - 1));
+    }
+    return c;
 }

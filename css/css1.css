@@ -586,7 +586,7 @@ a {
 
 #setWindows {
     width: 250px;
-    height: 150px;
+    height: 300px;
     background-color: whitesmoke;
     border-radius: 7px;
     position: absolute;
@@ -618,7 +618,25 @@ a {
 .setItem:hover {
     background: rgba(47, 47, 47, 0.2);
 }
-
+.setItem:first-child:hover{
+    border-radius: 7px 7px 0 0 ;
+}
+#backup_value{
+    margin-left:10px;
+    width: 130px;
+}
+#backup_ok:hover{
+    background: rgba(43, 57, 255, 0.84);
+    color: white;
+}
+#backup_ok{
+    width: 55px;
+    height: 30px;
+    border: 1px solid #a89ea7;
+    border-radius: 5px;
+    outline: none;
+    background: transparent;
+}
 /*变更样式区*/
 .button_CanUse {
     background: transparent;

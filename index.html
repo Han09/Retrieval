@@ -12,6 +12,7 @@
     <header>
     </header>
     <nav>
+        <div id="aa"></div>
         <section>
             <div id="v8">
                 <input id="retrieval_v8_main" type="image" src="./img/v8_icon/baidu.svg" use="baidu">
@@ -56,7 +57,8 @@
         <div class="wallpaper">
             <button class="control_up" title="上一张壁纸"></button>
             <button class="control_down" title="下一张壁纸"></button>
-            <button class="wallpaper_get" title="下载当前壁纸"><a id="wallpaper_get_url" href="./img/background/1.jpg" download="background1.jpg"></a></button>
+            <button class="wallpaper_get" title="下载当前壁纸"><a id="wallpaper_get_url" href="./img/background/1.jpg"
+                                                            download="background1.jpg"></a></button>
             <button class="wallpaper_post" title="使用自定义壁纸"></button>
             <input type="file" accept="jpg" id="btn_file" style="display:none">
             <button class="wallpaper_switch" title="关闭自定义壁纸"></button>
@@ -74,6 +76,9 @@
         <div class="setItem" id="reset"><span>清除所有内容和设置</span></div>
         <div class="setItem" id="wallpaperSwitch"><span>隐藏/显示壁纸栏</span></div>
         <div class="setItem" id='bianqianSwitch'><span>关闭/开启便签功能</span></div>
+        <div class="setItem" id="backup_G"><span>生成备份码和文档</span></div>
+        <div class="setItem" id="backup"><span>备份码：<span style="font-size: 11px">打开备份文件全选粘贴至下方</span></span></div>
+        <div class="setItem"><button id="backup_ok">恢复</button><input id="backup_value"></div>
     </div>
     <!----------模态窗口--------->
     <div id="Modal_Box" class="hide">
