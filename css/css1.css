@@ -269,10 +269,6 @@ footer {
 
 }
 
-#info {
-    vertical-align: middle;
-}
-
 footer span {
     color: white;
     margin: 0 20px 0 50px;
@@ -534,7 +530,7 @@ a {
     outline: none;
     -ms-overflow-style: none;
     font-size: 12px;
-    transition: width 300ms, height 300ms ,opacity 300ms;
+    transition: width 300ms, height 300ms, opacity 300ms;
 }
 
 .bianqian_text {
@@ -544,7 +540,7 @@ a {
     border: none;
     outline: none;
     -ms-overflow-style: none;
-    transition: width 300ms, height 300ms ,opacity 300ms;
+    transition: width 300ms, height 300ms, opacity 300ms;
     opacity: 0;
 }
 
@@ -618,18 +614,22 @@ a {
 .setItem:hover {
     background: rgba(47, 47, 47, 0.2);
 }
-.setItem:first-child:hover{
-    border-radius: 7px 7px 0 0 ;
+
+.setItem:first-child:hover {
+    border-radius: 7px 7px 0 0;
 }
-#backup_value{
-    margin-left:10px;
+
+#backup_value {
+    margin-left: 10px;
     width: 130px;
 }
-#backup_ok:hover{
+
+#backup_ok:hover {
     background: rgba(43, 57, 255, 0.84);
     color: white;
 }
-#backup_ok{
+
+#backup_ok {
     width: 55px;
     height: 30px;
     border: 1px solid #a89ea7;
@@ -637,6 +637,74 @@ a {
     outline: none;
     background: transparent;
 }
+
+/*媒体查询*/
+@media screen and (max-width: 625px) {
+    nav {
+        width: 90vw;
+    }
+
+    #retrieval_value {
+        height: 44px;
+        width: 80vw;
+        position: absolute;
+        top: calc(50% - 22px);
+        left: calc(50% - 45vw);
+    }
+
+    #retrieval_go {
+        right: calc(6vw - 15px);
+    }
+
+    .word {
+        width: 80vw;
+        position: absolute;
+        left: calc(50% - 40vw);
+        top: calc(50% + 24px);
+        display: flex;
+        flex-direction: column;
+        z-index: -1;
+    }
+
+    #shortcuts_card {
+        position: absolute;
+        width: 90vw;
+        height: 240px;
+        top: 100px;
+    }
+
+    #retrieval_clean {
+        right: 12vw;
+    }
+
+    .Dialogue {
+        width: 90vw;
+        left: calc(50% - 45vw);
+    }
+
+    .Dialogue_input {
+        display: block;
+        margin: 15px;
+        width: 70vw;
+        height: 25px;
+        border: none;
+        border-radius: 3px;
+        background: rgba(214, 209, 218, 0.24);
+        outline: none;
+        padding-left: 10px;
+    }
+
+    .under_line {
+        width: 70vw;
+    }
+    aside {
+        display: none;
+    }
+    .a_button{
+        display: block;
+    }
+}
+
 /*变更样式区*/
 .button_CanUse {
     background: transparent;
@@ -647,6 +715,7 @@ a {
 }
 
 .hide {
-    display: none;!important;
+    display: none;
+!important;
 }
 

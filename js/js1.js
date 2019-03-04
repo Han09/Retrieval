@@ -299,6 +299,16 @@ if (OOF === null) { //第一次使用时添加默认设置
     localStorage.setItem('openoroff', oof);
 }
 var tools_oof = localStorage.getItem('openoroff').split(',');
+//媒体控制
+var result = window.matchMedia('(min-width:625px)');
+if (!result.matches) {
+    document.querySelector('#retrieval_value').attributes.placeholder.value = '请开始你的表演';
+    tools_oof[0] = 'off';
+    tools_oof[4] = 'off';
+    tools_oof[5] = 'off';
+    localStorage.setItem('openoroff', tools_oof);
+
+}
 
 //便签
 var bianqiantxt = localStorage.getItem('text');
@@ -518,12 +528,6 @@ wallpaper_switch.onclick = function () {
         btn_file.click();
     }
 }
-//info图标
-var info = document.getElementById('info');
-var infotxt = document.getElementById('infotxt');
-info.onclick = function () {
-    infotxt.innerText = '请尽可能使用Chrome或Firfox访问，其他浏览器暂未作兼容适配.';
-}
 
 //设置窗口
 var set = document.getElementById('set');
@@ -557,17 +561,22 @@ if (tools_oof[4] === 'off') {
 }
 wallpaperSwitch.addEventListener('click', function (event) {
     event.stopPropagation();
-    if (tools_oof[4] === 'open') {
-        wallpaper.classList.add('hide');
-        wallpaper_blur[0].classList.add('hide');
-        tools_oof[4] = 'off';
-        localStorage.setItem('openoroff', tools_oof);
+    if (!result.matches) {
+        alert('手机UA就不要开壁纸栏占空间啦');
     }
     else {
-        wallpaper.classList.remove('hide');
-        wallpaper_blur[0].classList.remove('hide');
-        tools_oof[4] = 'open';
-        localStorage.setItem('openoroff', tools_oof);
+        if (tools_oof[4] === 'open') {
+            wallpaper.classList.add('hide');
+            wallpaper_blur[0].classList.add('hide');
+            tools_oof[4] = 'off';
+            localStorage.setItem('openoroff', tools_oof);
+        }
+        else {
+            wallpaper.classList.remove('hide');
+            wallpaper_blur[0].classList.remove('hide');
+            tools_oof[4] = 'open';
+            localStorage.setItem('openoroff', tools_oof);
+        }
     }
 })
 
@@ -578,19 +587,24 @@ if (tools_oof[5] === 'off') {
 }
 bianqianSwitch.addEventListener('click', function (event) {
     event.stopPropagation();
-    if (tools_oof[5] === 'open') {
-        bianqianButton.classList.add('hide');
-        bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0)';
-        bianqian_text.className = 'hide';
-        tools_oof[0] = 'off';
-        tools_oof[5] = 'off';
-        localStorage.setItem('openoroff', tools_oof);
-
+    if (!result.matches) {
+        alert('手机UA下就不要开启便签占空间啦');
     }
     else {
-        bianqianButton.classList.remove('hide');
-        tools_oof[5] = 'open';
-        localStorage.setItem('openoroff', tools_oof);
+        if (tools_oof[5] === 'open') {
+            bianqianButton.classList.add('hide');
+            bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0)';
+            bianqian_text.className = 'hide';
+            tools_oof[0] = 'off';
+            tools_oof[5] = 'off';
+            localStorage.setItem('openoroff', tools_oof);
+
+        }
+        else {
+            bianqianButton.classList.remove('hide');
+            tools_oof[5] = 'open';
+            localStorage.setItem('openoroff', tools_oof);
+        }
     }
 })
 
