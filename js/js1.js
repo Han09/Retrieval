@@ -89,7 +89,6 @@ for (let p = 0; p < word_item.length; p++) {
     }
     word_item[p].onmouseout = function () {
         this.classList.remove('select');
-
     }
 }
 
@@ -109,7 +108,6 @@ retrieval.onfocus = function () {
                 clean_select();
                 word_item[xulie - 1].classList.add('select');
                 break
-
             case 40 : //下键切换候选词
                 xulie++;
                 if (xulie > SN.length) {
@@ -465,13 +463,11 @@ btn_file.onchange = function () {
 }
 
 function changepic(obj) {
-    //Base64
     let img = getObjectURL(obj.files[0]);
     let image = new Image();
     image.src = img;
     image.onload = function () {
         let base64 = getBase64Image(image);
-        // console.log(base64);
         try {
             localStorage.setItem('base64', base64);
             bg.style.background = 'url(' + base64 + ')';
