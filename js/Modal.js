@@ -24,8 +24,7 @@ function button_CanUse() {
             button_ok.removeAttribute('disabled');
             button_ok.style.background = '#4868ff';
             button_ok.style.color = 'white';
-        }
-        else {
+        } else {
             button_ok.setAttribute('disabled', 'disabled');
             button_ok.style.background = 'transparent';
             button_ok.style.color = '#a89ea7';
@@ -99,8 +98,7 @@ function opendom() {
     for (j = 1; j <= index; j++) {
         let ss = localStorage.getItem('shortcuts' + j);
         if (ss == null) {
-        }
-        else {
+        } else {
             var button_value = JSON.parse(ss);
             button_title = button_value.title;
             button_url = button_value.url;
@@ -112,7 +110,7 @@ function opendom() {
                 '            <div class="a_img" >' +
                 '<div class="a_img_t" style="background:url(' + icon + ') no-repeat;background-size: contain">' +
                 '</div>' +
-                '</div>\n' +
+                '</div>' +
                 '            <div class="a_span">' + button_title + '</div>\n' +
                 '            <div class="a_button"   date_index= "' + index_text + '"  date_href= "' + button_url + '" date_title= ' + button_title + '></div>\n' +
                 '        </button>'
@@ -138,10 +136,10 @@ function Establish() {
     var div = document.createElement('div');
     div.innerHTML = '    <button  date_index= "' + index + ' " class="shortcuts_item ' + index_text + '" date_href= ' + button_url + '>\n' +
         '            <div class="a_img">' +
-        '<div class="a_img_t" style="background:url(' + icon + ') no-repeat;background-size: contain">' +
+        '<div class="a_img_t" style="background:url(' + icon + ') no-repeat;background-size: contain"> ' +
+        '</div> ' +
         '</div>' +
-        '</div>\n' +
-        '            <div class="a_span">' + button_title + '</div>\n' +
+        '            <div class="a_span">' + button_title + '</div>' +
         '            <div class="a_button"  date_index= "' + index_text + '"  date_href= "' + button_url + '" date_title= ' + button_title + '></div>\n' +
         '        </button>'
     shortcuts_card.appendChild(div);
