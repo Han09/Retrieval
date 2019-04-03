@@ -98,7 +98,7 @@ nav {
 #retrieval_value {
     border: none;
     color: #1e2220;
-    background: rgba(225, 225, 225, 0.8);
+    background: rgba(225, 225, 225, 0.4);
     border-radius: 25px;
     height: 44px;
     width: 500px;
@@ -110,6 +110,10 @@ nav {
     left: calc(50% - 272px);
     -o-clear: none;
     clear: none;
+}
+
+#retrieval_value::-webkit-input-placeholder{
+    color: rgba(255, 255, 255, 0.8);
 }
 
 ::-ms-clear {
