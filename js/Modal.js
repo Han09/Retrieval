@@ -74,7 +74,12 @@ button_ok.onclick = function () {
     } else {
         url_value = "http://" + url_value;
     }
+    let correct = url_value.charAt(url_value.length-1);
     let favicon = url_value + "/favicon.ico";
+    if(correct === '/'){
+        favicon = url_value + "favicon.ico";
+    }
+    console.log(favicon)
     var shortcut = {
         title: title_value,
         url: url_value,
