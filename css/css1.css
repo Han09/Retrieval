@@ -124,7 +124,8 @@ nav {
     display: none;
 }
 
-#retrieval_value:focus {
+#retrieval_value:focus,
+#retrieval_value:hover {
     box-shadow: 0 0 3px rgba(225, 225, 225, 0.8);
     outline: none;
 }
