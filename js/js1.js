@@ -9,7 +9,7 @@ var v8_main = document.getElementById("retrieval_v8_main"),
     select = document.getElementsByClassName('select'),
     retrieval_clean = document.getElementById('retrieval_clean'),
     bianqian = document.getElementById('bianqian'),
-    bianqian_text = document.getElementById('bianqian_text');
+    bianqian_text = document.getElementById('bianqian_text')
 
 
 //搜索引擎列表隐藏或显示
