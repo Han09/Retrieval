@@ -1,14 +1,14 @@
-var Modal_Box = document.getElementById('Modal_Box');
-button_cancel = document.getElementById('button_cancel');
-add_shortcuts = document.getElementById('add_shortcuts');
-shortcuts_title = document.getElementById('shortcuts_title');
-shortcuts_url = document.getElementById('shortcuts_url');
-line = document.getElementsByClassName('line');
-button_ok = document.getElementById('button_ok');
-shortcuts_card = document.getElementById('shortcuts_card');
-shortcuts_item = document.getElementsByClassName('shortcuts_item');
-button_remove = document.getElementById('button_remove');
-a_button = document.getElementsByClassName('a_button');
+var Modal_Box = document.getElementById('Modal_Box'),
+    button_cancel = document.getElementById('button_cancel'),
+    add_shortcuts = document.getElementById('add_shortcuts'),
+    shortcuts_title = document.getElementById('shortcuts_title'),
+    shortcuts_url = document.getElementById('shortcuts_url'),
+    line = document.getElementsByClassName('line'),
+    button_ok = document.getElementById('button_ok'),
+    shortcuts_card = document.getElementById('shortcuts_card'),
+    shortcuts_item = document.getElementsByClassName('shortcuts_item'),
+    button_remove = document.getElementById('button_remove'),
+    a_button = document.getElementsByClassName('a_button');
 
 //创建存储序列
 var Dindex = localStorage.getItem('Storage_index');
@@ -74,9 +74,9 @@ button_ok.onclick = function () {
     } else {
         url_value = "http://" + url_value;
     }
-    let correct = url_value.charAt(url_value.length-1);
+    let correct = url_value.charAt(url_value.length - 1);
     let favicon = url_value + "/favicon.ico";
-    if(correct === '/'){
+    if (correct === '/') {
         favicon = url_value + "favicon.ico";
     }
     console.log(favicon)

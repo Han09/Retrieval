@@ -1,15 +1,15 @@
-var v8_main = document.getElementById("retrieval_v8_main");
-svg = document.querySelectorAll('#retrieval_v8 li');
-retrieval_v8 = document.getElementById('retrieval_v8');
-retrieval_go = document.getElementById('retrieval_go');
-retrieval = document.getElementById('retrieval_value');
-word_item = document.getElementsByClassName('word_item');
-SN = document.getElementsByClassName('SN');
-go = document.getElementById('retrieval_go');
-select = document.getElementsByClassName('select');
-retrieval_clean = document.getElementById('retrieval_clean');
-bianqian = document.getElementById('bianqian');
-bianqian_text = document.getElementById('bianqian_text');
+var v8_main = document.getElementById("retrieval_v8_main"),
+    svg = document.querySelectorAll('#retrieval_v8 li'),
+    retrieval_v8 = document.getElementById('retrieval_v8'),
+    retrieval_go = document.getElementById('retrieval_go'),
+    retrieval = document.getElementById('retrieval_value'),
+    word_item = document.getElementsByClassName('word_item'),
+    SN = document.getElementsByClassName('SN'),
+    go = document.getElementById('retrieval_go'),
+    select = document.getElementsByClassName('select'),
+    retrieval_clean = document.getElementById('retrieval_clean'),
+    bianqian = document.getElementById('bianqian'),
+    bianqian_text = document.getElementById('bianqian_text');
 
 
 //搜索引擎列表隐藏或显示
@@ -17,8 +17,7 @@ v8_main.addEventListener('click', function (event) {
     event.stopPropagation();
     if (retrieval_v8.className === 'show') {
         retrieval_v8.className = 'hide';
-    }
-    else if (retrieval_v8.className === 'hide') {
+    } else if (retrieval_v8.className === 'hide') {
         retrieval_v8.className = 'show';
     }
 });
@@ -51,8 +50,7 @@ if (!DE) {
     localStorage.setItem('Default engine', 'baidu');
     v8_main.setAttribute('src', './img/v8_icon/baidu.svg');
     v8_main.setAttribute('use', 'baidu');
-}
-else {
+} else {
     v8_main.setAttribute('src', './img/v8_icon/' + DE + '.svg');
     v8_main.setAttribute('use', DE);
 }
@@ -120,8 +118,7 @@ retrieval.onfocus = function () {
                 try {
                     retrieval.value = select[0].innerHTML;
                     go.click();
-                }
-                catch (e) {
+                } catch (e) {
                     go.click();
                 }
                 clean_select();
@@ -312,15 +309,13 @@ if (!result.matches) {
 var bianqiantxt = localStorage.getItem('text');
 if (bianqiantxt) {
     bianqian_text.value = bianqiantxt;
-}
-else {
+} else {
     bianqian_text.value = '';
 }
 if (tools_oof[0] === 'open') { //页面加载时判定上次关闭页面时便签窗口的显示状态
     bianqian_text.className = 'bianqian_text_open';
     bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
-}
-else {
+} else {
     bianqian_text.className = 'bianqian_text';
 }
 bianqian.onclick = function () { //便签的显示和关闭
@@ -329,8 +324,7 @@ bianqian.onclick = function () { //便签的显示和关闭
         bianqian_text.className = 'bianqian_text';
         tools_oof[0] = 'off';
         localStorage.setItem('openoroff', tools_oof);
-    }
-    else {
+    } else {
         bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
         bianqian_text.className = 'bianqian_text_open';
         tools_oof[0] = 'open';
@@ -348,8 +342,7 @@ var wallpaper_blur = document.getElementsByClassName('wallpaper_blur');
 bg = document.getElementById('bg');
 if (tools_oof[1] === 'open') {
     bg.className = 'bg';
-}
-else {
+} else {
     bg.classList.remove('bg');
 }
 wallpaper_blur[0].onclick = function () {
@@ -357,8 +350,7 @@ wallpaper_blur[0].onclick = function () {
         bg.className = 'bg';
         tools_oof[1] = 'open';
         localStorage.setItem('openoroff', tools_oof);
-    }
-    else {
+    } else {
         bg.classList.remove('bg');
         tools_oof[1] = 'off';
         localStorage.setItem('openoroff', tools_oof);
@@ -411,8 +403,7 @@ function bgqr() {
         let base64 = localStorage.getItem('base64');
         bg.style.background = 'url(' + base64 + ')';
         bg.style.backgroundSize = 'cover';
-    }
-    else {
+    } else {
         bggg();
         wallpaper_switch.style.background = 'url(./svg/annex.svg) no-repeat rgba(0, 0, 0, 0.7) center';
         wallpaper_switch.style.backgroundSize = '90%';
@@ -472,8 +463,7 @@ function changepic(obj) {
             localStorage.setItem('base64', base64);
             bg.style.background = 'url(' + base64 + ')';
             bg.style.backgroundSize = 'cover';
-        }
-        catch (e) {
+        } catch (e) {
             tools_oof[3] = 'off';
             localStorage.setItem('openoroff', tools_oof);
             bgqr();
@@ -513,13 +503,11 @@ wallpaper_switch.onclick = function () {
         tools_oof[3] = 'off';
         localStorage.setItem('openoroff', tools_oof);
         bgqr();
-    }
-    else if (tools_oof[3] === 'off' && localStorage.getItem('base64') != null) {
+    } else if (tools_oof[3] === 'off' && localStorage.getItem('base64') != null) {
         tools_oof[3] = 'open';
         localStorage.setItem('openoroff', tools_oof);
         bgqr();
-    }
-    else {
+    } else {
         alert('请先添加自定义壁纸');
         btn_file.click();
     }
@@ -533,8 +521,7 @@ set.addEventListener('click', function (event) {
     if (setWindows.className === 'show') {
         setWindows.className = 'hide';
         set.classList.remove('animationSet');
-    }
-    else if (setWindows.className === 'hide') {
+    } else if (setWindows.className === 'hide') {
         setWindows.className = 'show';
         set.className = 'animationSet';
     }
@@ -559,15 +546,13 @@ wallpaperSwitch.addEventListener('click', function (event) {
     event.stopPropagation();
     if (!result.matches) {
         alert('手机UA就不要开壁纸栏占空间啦');
-    }
-    else {
+    } else {
         if (tools_oof[4] === 'open') {
             wallpaper.classList.add('hide');
             wallpaper_blur[0].classList.add('hide');
             tools_oof[4] = 'off';
             localStorage.setItem('openoroff', tools_oof);
-        }
-        else {
+        } else {
             wallpaper.classList.remove('hide');
             wallpaper_blur[0].classList.remove('hide');
             tools_oof[4] = 'open';
@@ -585,8 +570,7 @@ bianqianSwitch.addEventListener('click', function (event) {
     event.stopPropagation();
     if (!result.matches) {
         alert('手机UA下就不要开启便签占空间啦');
-    }
-    else {
+    } else {
         if (tools_oof[5] === 'open') {
             bianqianButton.classList.add('hide');
             bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0)';
@@ -595,8 +579,7 @@ bianqianSwitch.addEventListener('click', function (event) {
             tools_oof[5] = 'off';
             localStorage.setItem('openoroff', tools_oof);
 
-        }
-        else {
+        } else {
             bianqianButton.classList.remove('hide');
             tools_oof[5] = 'open';
             localStorage.setItem('openoroff', tools_oof);
@@ -623,8 +606,7 @@ backup_ok.onclick = function () {
     for (i = 0; i < uptext.length; i++) {
         if (!uptext[i]) {
             //无需操作
-        }
-        else {
+        } else {
             let backuptext = uptext[i].split('`');
             localStorage.setItem(backuptext[0], backuptext[1]);
         }
