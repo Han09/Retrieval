@@ -15,11 +15,7 @@ var v8_main = document.getElementById("retrieval_v8_main"),
 //搜索引擎列表隐藏或显示
 v8_main.addEventListener('click', function (event) {
     event.stopPropagation();
-    if (retrieval_v8.className === 'show') {
-        retrieval_v8.className = 'hide';
-    } else if (retrieval_v8.className === 'hide') {
-        retrieval_v8.className = 'show';
-    }
+    retrirval_v8.className === 'show' ? retrieval_v8.className = 'hide' : retrieval_v8.className = 'show'
 });
 //点击区域外自动关闭搜索引擎列表和设置列表
 document.addEventListener('click', function () {
@@ -307,11 +303,7 @@ if (!result.matches) {
 
 //便签
 var bianqiantxt = localStorage.getItem('text');
-if (bianqiantxt) {
-    bianqian_text.value = bianqiantxt;
-} else {
-    bianqian_text.value = '';
-}
+bianqian ? bianqian_text.value = bianqiantxt : bianqian_text.value = '';
 if (tools_oof[0] === 'open') { //页面加载时判定上次关闭页面时便签窗口的显示状态
     bianqian_text.className = 'bianqian_text_open';
     bianqian.style.backgroundColor = 'rgba(13, 17, 13, 0.27)'
@@ -333,18 +325,13 @@ bianqian.onclick = function () { //便签的显示和关闭
     }
 }
 bianqian_text.addEventListener('keyup', function () {//存储便签文本
-    let texts = bianqian_text.value;
-    localStorage.setItem('text', texts);
+    localStorage.setItem('text', bianqian_text.value);
 })
 
 //壁纸模糊
 var wallpaper_blur = document.getElementsByClassName('wallpaper_blur');
 bg = document.getElementById('bg');
-if (tools_oof[1] === 'open') {
-    bg.className = 'bg';
-} else {
-    bg.classList.remove('bg');
-}
+tools_oof[1] === 'open' ? bg.className = 'bg' : bg.classList.remove('bg');
 wallpaper_blur[0].onclick = function () {
     if (tools_oof[1] === 'off') {
         bg.className = 'bg';
@@ -372,23 +359,24 @@ function bggg() { //背景更改函数
     // bg.style.background = 'url("./img/background/' + wallpaper_number + '.jpg") no-repeat 0 0';//本地加载
     wallpaper_number = Number(wallpaper_number)//字符串转数字；
     switch (wallpaper_number) {//图床匹配加载
+
         case 1:
-            bg.style.background = 'url("https://pic.superbed.cn/item/5ca34ff53a213b0417930bf0") no-repeat center';
+            bg.style.background = 'url("https://s2.ax1x.com/2019/05/25/VA1K5n.jpg") no-repeat center';
             break;
         case 2:
-            bg.style.background = 'url("https://pic.superbed.cn/item/5ca3541e3a213b041793357f") no-repeat center';
+            bg.style.background = 'url("https://s2.ax1x.com/2019/05/25/VA1nEj.jpg") no-repeat center';
             break;
         case 3:
-            bg.style.background = 'url("https://pic.superbed.cn/item/5c7a56003a213b0417fedc09") no-repeat center';
+            bg.style.background = 'url("https://s2.ax1x.com/2019/05/25/VA1uUs.jpg") no-repeat center';
             break;
         case 4:
-            bg.style.background = 'url("https://pic.superbed.cn/item/5ca355823a213b041793425c") no-repeat center';
+            bg.style.background = 'url("https://s2.ax1x.com/2019/05/25/VA1uUs.jpg") no-repeat center';
             break;
         case 5:
-            bg.style.background = 'url("https://pic.superbed.cn/item/5ca3590d3a213b04179363b7") no-repeat center';
+            bg.style.background = 'url("https://s2.ax1x.com/2019/05/25/VA1ZDg.jpg") no-repeat center';
             break;
         default:
-            bg.style.background = 'url("https://pic.superbed.cn/item/5ca34ff53a213b0417930bf0") no-repeat center';
+            bg.style.background = 'url("https://s2.ax1x.com/2019/05/25/VA1K5n.jpg") no-repeat center';
             break;
     }
     bg.style.backgroundSize = 'cover';
