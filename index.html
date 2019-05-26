@@ -16,13 +16,17 @@
             <div id="v8">
                 <input id="retrieval_v8_main" type="image" src="./img/v8_icon/baidu.svg" use="baidu">
                 <ul id="retrieval_v8" class="hide">
-                    <li datause="baidu" dataSvg="./img/v8_icon/baidu.svg"><img src="./img/v8_icon/baidu.svg">百度</li>
-                    <li datause="google" dataSvg="./img/v8_icon/google.svg"><img src="./img/v8_icon/google.svg">谷歌</li>
+                    <li datause="baidu" dataSvg="./img/v8_icon/baidu.svg"><img src="./img/v8_icon/baidu.svg">百度
+                    </li>
+                    <li datause="google" dataSvg="./img/v8_icon/google.svg"><img src="./img/v8_icon/google.svg">谷歌
+                    </li>
                     <li datause="bing" dataSvg="./img/v8_icon/bing.svg"><img src="./img/v8_icon/bing.svg">必应</li>
-                    <li datause="taobao" dataSvg="./img/v8_icon/taobao.svg"><img src="./img/v8_icon/taobao.svg">淘宝</li>
+                    <li datause="taobao" dataSvg="./img/v8_icon/taobao.svg"><img src="./img/v8_icon/taobao.svg">淘宝
+                    </li>
                 </ul>
             </div>
-            <input type="text" placeholder="你的思想再伟大，若无法有效传递出来。你便是没有思想的人" id="retrieval_value" value="" spellcheck="false">
+            <input type="text" placeholder="你的思想再伟大，若无法有效传递出来。你便是没有思想的人" id="retrieval_value" value=""
+                   spellcheck="false">
             <input type="button" id="retrieval_go">
             <input type="button" id="retrieval_clean">
 
@@ -76,18 +80,22 @@
         <div class="setItem" id='bianqianSwitch'><span>关闭/开启便签功能</span></div>
         <div class="setItem" id="backup_G"><span>生成备份码和文档</span></div>
         <div class="setItem" id="backup"><span>备份码：<span style="font-size: 11px">打开备份文件全选粘贴至下方</span></span></div>
-        <div class="setItem"><button id="backup_ok">恢复</button><input id="backup_value" spellcheck="false"></div>
+        <div class="setItem">
+            <button id="backup_ok">恢复</button>
+            <input id="backup_value" spellcheck="false"></div>
     </div>
     <!----------模态窗口--------->
     <div id="Modal_Box" class="hide">
         <div class="Dialogue">
             <span class="Dialogue_title">网站标题</span>
-            <input class="Dialogue_input" id="shortcuts_title" type="text" placeholder="例如：github" value='' spellcheck="false">
+            <input class="Dialogue_input" id="shortcuts_title" type="text" placeholder="例如：github" value=''
+                   spellcheck="false">
             <div class="under_line">
                 <div class="line"></div>
             </div>
             <span class="Dialogue_title">网站链接</span>
-            <input class="Dialogue_input" id="shortcuts_url" type="url" placeholder="例如：https://www.github.com" spellcheck="false">
+            <input class="Dialogue_input" id="shortcuts_url" type="url" placeholder="例如：https://www.github.com"
+                   spellcheck="false">
             <div class="under_line">
                 <div class="line"></div>
             </div>
@@ -99,6 +107,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="msg">
+        <span>5.26更新:修复背景图片下载错误, 更换图床提升加载速度, 增加manifest离线缓存</span>
+        <span id="msgClose">关闭</span>
     </div>
 </div>
 <script src='./js/js1.js'></script>

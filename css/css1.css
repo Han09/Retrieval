@@ -709,6 +709,24 @@ a {
     }
 }
 
+.msg{
+    position: fixed;
+    display: none;
+    width: 100%;
+    top: 0;
+    color: #ED6A0C;
+    background: #fffbe8;
+}
+.msg>span{
+    margin: 4px ;
+    float: left;
+}
+
+#msgClose{
+    color: #ED6A0C;
+    float: right;
+}
+
 /*变更样式区*/
 .button_CanUse {
     background: transparent;
