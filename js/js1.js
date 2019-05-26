@@ -287,7 +287,6 @@ if (OOF === null) { //第一次使用时添加默认设置
     oof[3] = 'off';//自定义壁纸开关状态，默认为关
     oof[4] = 'open';//壁纸控制栏的显示状态，默认显示
     oof[5] = 'open';//便签按钮的显示状态，默认显示
-    oof[6] = 'open';//更新通知的显示控制，默认开启
     localStorage.setItem('openoroff', oof);
 }
 var tools_oof = localStorage.getItem('openoroff').split(',');
@@ -644,14 +643,3 @@ function uncompileStr(code) { //字符串解混淆
     }
     return c;
 }
-
-//更新通知部分
-if (tools_oof[6] == 'open') {
-    document.getElementsByClassName('msg')[0].style.display = 'block'
-    document.getElementById('msgClose').addEventListener('click', function () {
-        document.getElementsByClassName('msg')[0].style.display = 'none'
-        tools_oof[6] = 'off';
-        localStorage.setItem('openoroff', tools_oof);
-    })
-}
-
