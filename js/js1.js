@@ -15,7 +15,7 @@ var v8_main = document.getElementById("retrieval_v8_main"),
 //搜索引擎列表隐藏或显示
 v8_main.addEventListener('click', function (event) {
     event.stopPropagation();
-    retrirval_v8.className === 'show' ? retrieval_v8.className = 'hide' : retrieval_v8.className = 'show'
+    retrieval_v8.className === 'show' ? retrieval_v8.className = 'hide' : retrieval_v8.className = 'show'
 });
 //点击区域外自动关闭搜索引擎列表和设置列表
 document.addEventListener('click', function () {
