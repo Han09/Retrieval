@@ -11,7 +11,7 @@
         {
           "name": "酸汤肉片",
           "desc": "里脊肉500g 酸汤料一包",
-          "cover": ""
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/4.png"
         },
         {
           "name": "土豆条炖韭菜",
@@ -101,7 +101,7 @@
         {
           "name": "辣炒花蛤",
           "desc": "蛤蜊300g 辣椒 蚝油",
-          "cover": ""
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/5.png"
         },
         {
           "name": "炒虾",
@@ -135,8 +135,8 @@
         },
         {
           "name": "油麦菜/菜心",
-          "desc": "油 + 蒜 辣椒 酱油 蚝油 水  = 万能料汁",
-          "cover": ""
+          "desc": "油 + 蒜 辣椒 酱油 蚝油  = 万能料汁",
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/2.png"
         },
         {
           "name": "白菜汆蛋",
@@ -156,7 +156,7 @@
         {
           "name": "西红柿炒蛋",
           "desc": "西红柿 + 蛋",
-          "cover": ""
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/1.png"
         },
         {
           "name": "酸辣藕片/西兰花",
@@ -219,11 +219,6 @@
           "cover": ""
         },
         {
-          "name": "爆锅面",
-          "desc": "白菜/娃娃菜 + 挂面 + 自家腊肠",
-          "cover": ""
-        },
-        {
           "name": "皮蛋瘦肉粥",
           "desc": "肉丝/火腿 + 皮蛋 + 大米粥",
           "cover": ""
@@ -251,7 +246,7 @@
         {
           "name": "蒸米饭",
           "desc": "一杯半就是两人量",
-          "cover": ""
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/3.png"
         },
         {
           "name": "爆锅面",
@@ -270,7 +265,12 @@
         },
         {
           "name": "煮水饺",
-          "desc": "不吃香菇哦",
+          "desc": "",
+          "cover": ""
+        },
+        {
+          "name": "煮馄饨",
+          "desc": "",
           "cover": ""
         },
         {
@@ -300,7 +300,12 @@
         },
         {
           "name": "馒头",
-          "desc": "emmm, 超市可能有卖",
+          "desc": "臭宝不是很爱吃馒头",
+          "cover": ""
+        },
+        {
+          "name": "炸馒头干",
+          "desc": "但是馒头干喜欢吃",
           "cover": ""
         }
       ]
