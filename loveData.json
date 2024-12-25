@@ -134,6 +134,11 @@
           "cover": ""
         },
         {
+          "name": "酸辣土豆丝🥔",
+          "desc": "一个土豆擦丝，泡椒、干辣椒、醋",
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/6.png"
+        },
+        {
           "name": "油麦菜/菜心",
           "desc": "油 + 蒜 辣椒 酱油 蚝油  = 万能料汁",
           "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/2.png"
@@ -261,7 +266,7 @@
         {
           "name": "煎土豆饼",
           "desc": "土豆切片，面粉大量 裹，油热煎熟（不要使劲翻，一面一面煎熟）",
-          "cover": ""
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/8.png"
         },
         {
           "name": "煮水饺",
@@ -276,7 +281,7 @@
         {
           "name": "煮汤圆",
           "desc": "超市速冻哒",
-          "cover": ""
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/7.png"
         },
         {
           "name": "糯米糖糕",
