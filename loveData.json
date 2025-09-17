@@ -21,7 +21,7 @@
         {
           "name": "烧椒鱼片",
           "desc": "鱼片沸水烫熟过凉水，二荆条煸干炒香 黑胡椒爆炒",
-          "cover": ""
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/sjyp.jpg"
         },
         {
           "name": "土豆条炖韭菜",
@@ -176,11 +176,16 @@
         {
           "name": "秋葵酿虾滑",
           "desc": "秋葵去籽，沸水30秒烫熟过凉水，挤上虾滑煎熟",
-          "cover": ""
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/qknxh.jpg"
         },
         {
           "name": "白菜汆蛋",
           "desc": "白菜芯 + 鸡蛋",
+          "cover": ""
+        },
+        {
+          "name": "山药炒木耳",
+          "desc": "脆山药切片 先木耳焯水、后山药焯水 过凉水 炒",
           "cover": ""
         },
         {
@@ -371,7 +376,7 @@
         {
           "name": "烤地瓜",
           "desc": "烘焙模式 160℃烤20分钟逼出糖分，再200℃烤25-30分钟上色",
-          "cover": ""
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/khs.jpg"
         }
       ]
     },
