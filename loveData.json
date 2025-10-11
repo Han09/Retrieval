@@ -24,6 +24,16 @@
           "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/sjyp.jpg"
         },
         {
+          "name": "炸鸡",
+          "desc": "空气炸 190度15分钟",
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/zj.jpg"
+        },
+        {
+          "name": "蘑菇炒肉",
+          "desc": "蘑菇撕开烫熟，蒜末爆锅炒肉",
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/mgcr.jpg"
+        },
+        {
           "name": "土豆条炖韭菜",
           "desc": "五花肉100g 土豆 韭菜",
           "cover": ""
@@ -186,7 +196,7 @@
         {
           "name": "山药炒木耳",
           "desc": "脆山药切片 先木耳焯水、后山药焯水 过凉水 炒",
-          "cover": ""
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/sycme.jpg"
         },
         {
           "name": "炒豆角",
@@ -226,7 +236,7 @@
         {
           "name": "炝炒大头菜",
           "desc": "干辣椒 + 包包菜",
-          "cover": ""
+          "cover": "https://admirable-blini-6042e4.netlify.app/loveDataImg/qcdtc.jpg"
         },
         {
           "name": "地三鲜",
